@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-import 'features/authentication/screen/singup/singnin.dart';
+import 'features/authentication/screen/signin/signin.dart';
 
 void main(){
   runApp(const MyApp());
