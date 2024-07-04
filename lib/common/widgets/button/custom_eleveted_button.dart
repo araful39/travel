@@ -15,17 +15,20 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 55,
+        height: 50,
         width: double.infinity,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding:  const EdgeInsets.symmetric(horizontal: 8),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)
+                ),
                   backgroundColor: backgroundColor ?? RColores.buttonColor),
               onPressed: onPress,
               child: Text(
                 buttonName,
-                style: const TextStyle(color: RColores.white, fontSize: 25),
+                style: const TextStyle(color: RColores.white, fontSize: 20),
               )),
         ));
   }

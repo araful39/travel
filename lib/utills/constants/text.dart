@@ -23,6 +23,23 @@ class RTexts{
   static const String onboard3SubTitle =" people ";
   static const String onboard3Description ="To get the best of your adventure you just need to leave and go where you like. we are waiting for you";
 
+  // sing in page text
+  static const String singIn="Sign In";
+  static const String singInTitle ="Sign in now";
+  static const String singInSubTitle="Please sign in to continue our app";
+  static const String forgetPassword="Forget Password?";
+  static const String dontHavenAnAccount="Don’t have an account?";
+  static const String orConnect="Or connect";
+
+  //sing up page text
+
+  static const String singUp="Sign Up";
+  static const String singUpTitle ="Sign up now";
+  static const String singUpSubTitle="Please fill the details and create account";
+  static const String passwordCharacter="Password must be 8 character";
+  static const String alreadyAccount="Already have an account";
+
+
 
 
 

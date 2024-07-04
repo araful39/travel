@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:travel/common/widgets/custom_button.dart';
+import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/data/onboard_list/onboard_list.dart';
-import 'package:travel/features/authentication/screen/onboard/widget.dart';
+import 'package:travel/features/authentication/screen/onboard/widget/custom_onboad.dart';
 import 'package:travel/features/shop/screen/home/home.dart';
 
 class OnboardScreen extends StatefulWidget {
