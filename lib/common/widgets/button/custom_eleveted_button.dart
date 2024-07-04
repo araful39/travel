@@ -22,7 +22,7 @@ class CustomButton extends StatelessWidget {
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
+                  borderRadius: BorderRadius.circular(12)
                 ),
                   backgroundColor: backgroundColor ?? RColores.buttonColor),
               onPressed: onPress,

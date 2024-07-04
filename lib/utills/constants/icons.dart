@@ -10,4 +10,10 @@ class RIcons{
   static const String onBoardV2="assets/images/onboard/vector/vector2.png";
   static const String onBoardV3="assets/images/onboard/vector/vector3.png";
 
+
+  static const String email="assets/images/onboard/vector/email.png";
+  static const String person="assets/images/onboard/vector/person.png";
+  static const String notification="assets/images/onboard/vector/notification.png";
+
+
 }

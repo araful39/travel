@@ -24,10 +24,10 @@ class RTexts{
   static const String onboard3Description ="To get the best of your adventure you just need to leave and go where you like. we are waiting for you";
 
   // sing in page text
-  static const String singIn="Sign In";
+  static const String signIn="Sign In";
   static const String singInTitle ="Sign in now";
   static const String singInSubTitle="Please sign in to continue our app";
-  static const String forgetPassword="Forget Password?";
+  static const String forgetPassword="Forget Password";
   static const String dontHavenAnAccount="Don’t have an account?";
   static const String orConnect="Or connect";
 
@@ -39,6 +39,34 @@ class RTexts{
   static const String passwordCharacter="Password must be 8 character";
   static const String alreadyAccount="Already have an account";
 
+  //forget password
+  static const String resetPassword="Reset Password";
+static const String forgetSubTitle="Enter your email account to reset your password";
+static const String checkEmail="Check your email";
+static const String checkEmailSubTitle="We have send password recovery instruction to your email";
+
+//Otp verification
+  static const String verify="Verify";
+static const String otpVerification="OTP Verification";
+static const String otpSubTitle="Please check your email www.uihut@gmail.com to see the verification code";
+static const String otpCode="OTP Code";
+static const String otpResend="Resend code to";
+static const String otpTime="01:26";
+
+
+//HomePage
+
+static const String personName="Raju";
+static const String homeTittle="Explore the";
+static const String homeTittle2="Beautiful ";
+static const String homeTittle3="world!";
+static const String bestDestination="Best Destination";
+static const String viewAll="View all";
+
+//location
+static const String sunamganj="Tekergat, Sunamgnj";
+static const String sreemangal="Sreemangal";
+static const String coxbazar="Inai beach, CoxBazar";
 
 
 

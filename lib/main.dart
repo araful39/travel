@@ -1,8 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:travel/features/shop/screen/home/home.dart';
 
-import 'features/authentication/screen/signin/signin.dart';
+import 'features/authentication/screen/otp_verification/otp_verification.dart';
+
 
 void main(){
   runApp(const MyApp());
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  const GetMaterialApp(
-      home: SingIn(),
+      home: Home(),
       debugShowCheckedModeBanner: false,
 
 

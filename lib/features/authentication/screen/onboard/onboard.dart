@@ -4,7 +4,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/data/onboard_list/onboard_list.dart';
 import 'package:travel/features/authentication/screen/onboard/widget/custom_onboad.dart';
-import 'package:travel/features/shop/screen/home/home.dart';
+import 'package:travel/features/authentication/screen/signin/signin.dart';
 
 class OnboardScreen extends StatefulWidget {
   const OnboardScreen({super.key});
@@ -30,8 +30,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 // print(value);
                 if (index == 0) {
                   isTrue = true;
-                  print(isTrue);
-                  print(value);
+                  // print(isTrue);
+                  // print(value);
                 } else if (index > 0) {
                   isTrue = false;
                 }
@@ -85,7 +85,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   buttonName: "Next",
                   onPress: () {
                     if(index == 2){
-                      Get.offAll(const Home());
+                      Get.offAll(const SignIn());
                     }else{
                       _controller.nextPage(
                           duration: const Duration(milliseconds: 500),
