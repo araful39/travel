@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:travel/features/shop/screen/home/home.dart';
 
-import 'features/authentication/screen/otp_verification/otp_verification.dart';
 
 
 void main(){
