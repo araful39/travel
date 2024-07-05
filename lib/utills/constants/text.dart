@@ -65,8 +65,14 @@ static const String viewAll="View all";
 
 //location
 static const String sunamganj="Tekergat, Sunamgnj";
+static const String sunamganjResort="Niladri Reservoir";
+
 static const String sreemangal="Sreemangal";
+  static const String sreemangalResort="Madhabpur Lake";
+
 static const String coxbazar="Inai beach, CoxBazar";
+  static const String  coxbazarResort="kolatoli hotel";
+
 
 
 
