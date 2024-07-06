@@ -1,7 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:travel/features/shop/screen/home/home.dart';
+
+import 'navigation_menu.dart';
 
 
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  const GetMaterialApp(
-      home: Home(),
+      home: NavigationMenu(),
       debugShowCheckedModeBanner: false,
 
 

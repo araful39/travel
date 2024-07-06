@@ -53,14 +53,14 @@ class ForgetPassword extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(RIcons.email),
-                            SizedBox(
+                            const SizedBox(
                               height: RSizes.md,
                             ),
-                            Text(RTexts.checkEmail,style: TextStyle(fontSize: RSizes.md,fontWeight: FontWeight.bold),),
-                            SizedBox(
+                            const Text(RTexts.checkEmail,style: TextStyle(fontSize: RSizes.md,fontWeight: FontWeight.bold),),
+                            const SizedBox(
                               height: RSizes.sm,
                             ),
-                            Text(RTexts.checkEmailSubTitle,textAlign: TextAlign.center,)
+                            const Text(RTexts.checkEmailSubTitle,textAlign: TextAlign.center,)
                           ],
                         ),
                       ),

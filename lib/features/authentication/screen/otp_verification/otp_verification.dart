@@ -36,12 +36,12 @@ class OtpVerification extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: const Row(
+                const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Column(
@@ -68,7 +68,7 @@ class OtpVerification extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: RSizes.md,
                 ),
                 CustomButton(buttonName: RTexts.verify, onPress: (){
