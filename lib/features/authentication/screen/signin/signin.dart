@@ -5,7 +5,7 @@ import 'package:travel/common/widgets/button/text_button.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
 import 'package:travel/common/widgets/social_media/social_media.dart';
 import 'package:travel/features/authentication/screen/signup/signup.dart';
-import 'package:travel/features/shop/screen/home/home.dart';
+import 'package:travel/navigation_menu.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
@@ -45,7 +45,7 @@ class SignIn extends StatelessWidget {
                 ],
               ),
               CustomButton(buttonName: RTexts.signIn, onPress: (){
-                Get.to(()=> const Home());
+                Get.to(()=> const NavigationMenu());
               }),
                 const SizedBox(
                   height: 30,

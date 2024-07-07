@@ -30,6 +30,7 @@ class RIcons{
 
 
   static const String bookmark="assets/icon/bookmark.png";
+  static const String backArrow="assets/icon/backArrow.png";
 
 
 
