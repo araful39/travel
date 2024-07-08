@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:travel/common/widgets/heading/custom_heading.dart';
 import 'package:travel/data/best_destination/best_destination_list.dart';
+import 'package:travel/features/shop/screen/details/details.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/text.dart';
@@ -102,117 +104,122 @@ class _HomeState extends State<Home> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          child: SizedBox(
-                            width: width * 0.7,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Stack(
-                                  children: [
-                                    Image.asset(
-                                        bestDestinationList[index].imagePath),
-                                    Positioned(
-                                        right: 10,
-                                        top: 10,
-                                        child: InkWell(
-                                          child: Image.asset(
-                                            RIcons.bookmark,
-                                            color: isBookmark == true
-                                                ? RColores.orangeColor
-                                                : null,
-                                          ),
-                                          onTap: () {
-                                            setState(() {
-                                              isBookmark = !isBookmark;
-                                            });
-                                          },
-                                        )),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                        child: InkWell(
+                          onTap: (){
+                            Get.to(()=>const Details());
+                          },
+                          child: Card(
+                            child: SizedBox(
+                              width: width * 0.7,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Stack(
                                     children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            bestDestinationList[index]
-                                                .resortName,
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20),
-                                          ),
-                                          Row(
-                                            children: [
-                                              const Icon(
-                                                Icons.star,
-                                                color: Colors.orange,
-                                                size: 15,
-                                              ),
-                                              Text(bestDestinationList[index]
-                                                  .ratings),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              const Icon(
-                                                  Icons.location_on_outlined),
-                                              Text(bestDestinationList[index]
-                                                  .location),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 30,
-                                            width: 65,
-                                            child: Stack(
-                                              children: [
-                                                Positioned(
-                                                  child: Image.asset(
-                                                      RIcons.person1),
-                                                ),
-                                                Positioned(
-                                                  left: 15,
-                                                  child: Image.asset(
-                                                      RIcons.person2),
-                                                ),
-                                                Positioned(
-                                                  left: 30,
-                                                  child: Image.asset(
-                                                      RIcons.person3),
-                                                ),
-                                                const Positioned(
-                                                  left: 42,
-                                                  child: CircleAvatar(
-                                                    maxRadius: 12,
-                                                    backgroundColor:
-                                                        Colors.lightBlueAccent,
-                                                    child: Text(
-                                                      "50+",
-                                                      style: TextStyle(
-                                                          fontSize: 10),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                      Image.asset(
+                                          bestDestinationList[index].imagePath),
+                                      Positioned(
+                                          right: 10,
+                                          top: 10,
+                                          child: InkWell(
+                                            child: Image.asset(
+                                              RIcons.bookmark,
+                                              color: isBookmark == true
+                                                  ? RColores.orangeColor
+                                                  : null,
                                             ),
-                                          )
-                                        ],
-                                      )
+                                            onTap: () {
+                                              setState(() {
+                                                isBookmark = !isBookmark;
+                                              });
+                                            },
+                                          )),
                                     ],
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              bestDestinationList[index]
+                                                  .resortName,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 20),
+                                            ),
+                                            Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.star,
+                                                  color: Colors.orange,
+                                                  size: 15,
+                                                ),
+                                                Text(bestDestinationList[index]
+                                                    .ratings),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                const Icon(
+                                                    Icons.location_on_outlined),
+                                                Text(bestDestinationList[index]
+                                                    .location),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 30,
+                                              width: 65,
+                                              child: Stack(
+                                                children: [
+                                                  Positioned(
+                                                    child: Image.asset(
+                                                        RIcons.person1),
+                                                  ),
+                                                  Positioned(
+                                                    left: 15,
+                                                    child: Image.asset(
+                                                        RIcons.person2),
+                                                  ),
+                                                  Positioned(
+                                                    left: 30,
+                                                    child: Image.asset(
+                                                        RIcons.person3),
+                                                  ),
+                                                  const Positioned(
+                                                    left: 42,
+                                                    child: CircleAvatar(
+                                                      maxRadius: 12,
+                                                      backgroundColor:
+                                                          Colors.lightBlueAccent,
+                                                      child: Text(
+                                                        "50+",
+                                                        style: TextStyle(
+                                                            fontSize: 10),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

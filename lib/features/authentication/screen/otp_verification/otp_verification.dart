@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/common/widgets/button/text_button.dart';
 import 'package:travel/features/authentication/screen/otp_verification/widget/otp.dart';
+import 'package:travel/features/authentication/screen/signin/signin.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
@@ -72,14 +74,16 @@ class OtpVerification extends StatelessWidget {
                   height: RSizes.md,
                 ),
                 CustomButton(buttonName: RTexts.verify, onPress: (){
-        
+                  Get.to(()=>const SignIn());
                 }),
                 const SizedBox(
                   height: RSizes.sm,
                 ),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomTextButton(buttonName: RTexts.otpResend, onPress: (){}),
+                    CustomTextButton(buttonName: RTexts.otpResend, onPress: (){
+
+                    }),
                     const Text(RTexts.otpTime)
                   ],
                 )

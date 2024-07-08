@@ -4,6 +4,7 @@ import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/common/widgets/button/text_button.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
 import 'package:travel/common/widgets/social_media/social_media.dart';
+import 'package:travel/features/authentication/screen/forget_password/forget_password.dart';
 import 'package:travel/features/authentication/screen/signup/signup.dart';
 import 'package:travel/navigation_menu.dart';
 import 'package:travel/utills/constants/sizes.dart';
@@ -41,7 +42,9 @@ class SignIn extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  CustomTextButton(buttonName: RTexts.forgetPassword, onPress: (){})
+                  CustomTextButton(buttonName: RTexts.forgetPassword, onPress: (){
+                    Get.to(const ForgetPassword());
+                  })
                 ],
               ),
               CustomButton(buttonName: RTexts.signIn, onPress: (){

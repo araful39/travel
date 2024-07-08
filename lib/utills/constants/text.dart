@@ -64,6 +64,7 @@ static const String bestDestination="Best Destination";
 static const String viewAll="View all";
 
 //location
+  static const String tekergat="Tekergat,";
 static const String sunamganj="Tekergat, Sunamgnj";
 static const String sunamganjResort="Niladri Reservoir";
 

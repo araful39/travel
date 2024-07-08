@@ -1,8 +1,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:travel/features/authentication/screen/splash/splash.dart';
+import 'package:travel/features/shop/screen/details/details.dart';
 
-import 'features/shop/screen/details/details.dart';
 
 
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  const GetMaterialApp(
-      home: Details(),
+      home: Splash(),
       debugShowCheckedModeBanner: false,
 
 

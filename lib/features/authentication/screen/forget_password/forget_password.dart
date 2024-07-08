@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
+import 'package:travel/features/authentication/screen/otp_verification/otp_verification.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
@@ -52,7 +54,11 @@ class ForgetPassword extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset(RIcons.email),
+                            InkWell(
+                                onTap: (){
+                                  Get.to(()=> const OtpVerification());
+                                }
+                                ,child: Image.asset(RIcons.email)),
                             const SizedBox(
                               height: RSizes.md,
                             ),
@@ -66,6 +72,7 @@ class ForgetPassword extends StatelessWidget {
                       ),
                     );
                   }
+
 
                   );
                 })
