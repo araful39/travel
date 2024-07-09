@@ -74,6 +74,15 @@ static const String sreemangal="Sreemangal";
 static const String coxbazar="Inai beach, CoxBazar";
   static const String  coxbazarResort="kolatoli hotel";
 
+  //profile
+
+static const String profile="Profile";
+static const String bookMarked="Bookmarked";
+static const String Previous="Previous";
+static const String previousTrips="Privious Tips";
+static const String settings="Settings";
+  static const String version="Version";
+
 
 
 

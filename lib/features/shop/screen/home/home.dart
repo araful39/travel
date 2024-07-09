@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:travel/common/widgets/heading/custom_heading.dart';
 import 'package:travel/data/best_destination/best_destination_list.dart';
 import 'package:travel/features/shop/screen/details/details.dart';
+import 'package:travel/features/shop/screen/popular_places/popular_places.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/text.dart';
@@ -93,7 +94,9 @@ class _HomeState extends State<Home> {
               CustomHeading(
                 title: RTexts.bestDestination,
                 subTittleButton: true,
-                onPress: () {},
+                onPress: () {
+                  Get.to(()=>const PopularPlaces());
+                },
               ),
               SizedBox(
                 height: height * 0.52,

@@ -33,5 +33,12 @@ class RIcons{
   static const String backArrow="assets/icon/backArrow.png";
 
 
+  static const String profileMask="assets/images/profileMask.png";
+  static const String trip="assets/icon/trip.png";
+  static const String settings="assets/icon/settings.png";
+  static const String version="assets/icon/version.png";
+
+
+
 
 }

@@ -256,7 +256,7 @@ class _ViewPageState extends State<ViewPage> {
                                       height: RSizes.sm,
                                     ),
                                     CustomButton(buttonName: "See On The Map", onPress: (){
-                                      _launchURL('https://www.google.com/maps');
+                                      _launchURL('https://www.google.com/maps/');
                                     })
                                   ],
                                 ),
