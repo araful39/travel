@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final IconData? suffixIcon;
+  final Color? suffixColor;
   const CustomTextField({
-    super.key, required this.hintText, this.suffixIcon,
+    super.key, required this.hintText, this.suffixIcon, this.suffixColor,
   });
 
   @override
@@ -17,7 +18,7 @@ class CustomTextField extends StatelessWidget {
 
 
           hintText: hintText,
-          suffixIcon: Icon(suffixIcon),
+          suffixIcon: Icon(suffixIcon,color: suffixColor,),
           fillColor: Colors.grey.shade100,
 
           enabledBorder: OutlineInputBorder(

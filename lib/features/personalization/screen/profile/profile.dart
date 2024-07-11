@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:travel/features/personalization/screen/edit_profile/edit_profile.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/sizes.dart';
@@ -15,11 +17,11 @@ class Profile extends StatelessWidget {
           padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
           child: Column(
             children: [
-              const Row(
+               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(),
-                  Text(
+                  const SizedBox(),
+                  const Text(
                     "Profile",
                     style: TextStyle(
                         fontSize: 20,
@@ -27,7 +29,10 @@ class Profile extends StatelessWidget {
                         color: RColores.black),
                   ),
                   InkWell(
-                    child: Icon(
+                    onTap: (){
+                      Get.to(()=> const EditProfile());
+                    },
+                    child: const Icon(
                       Icons.edit,
                       color: RColores.splashColor,
                     ),
