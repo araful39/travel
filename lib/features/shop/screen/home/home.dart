@@ -95,7 +95,7 @@ class _HomeState extends State<Home> {
                 title: RTexts.bestDestination,
                 subTittleButton: true,
                 onPress: () {
-                  Get.to(()=>const PopularPlaces());
+                  Get.to(() => const PopularPlaces());
                 },
               ),
               SizedBox(
@@ -108,8 +108,8 @@ class _HomeState extends State<Home> {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
-                          onTap: (){
-                            Get.to(()=>const Details());
+                          onTap: () {
+                            Get.to(() => const Details());
                           },
                           child: Card(
                             child: SizedBox(
@@ -204,8 +204,8 @@ class _HomeState extends State<Home> {
                                                     left: 42,
                                                     child: CircleAvatar(
                                                       maxRadius: 12,
-                                                      backgroundColor:
-                                                          Colors.lightBlueAccent,
+                                                      backgroundColor: Colors
+                                                          .lightBlueAccent,
                                                       child: Text(
                                                         "50+",
                                                         style: TextStyle(

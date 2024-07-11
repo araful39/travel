@@ -70,7 +70,8 @@ class PopularPlaces extends StatelessWidget {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8),
-                        child: Column(
+                        child:
+                        Column(
 
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -93,6 +94,16 @@ class PopularPlaces extends StatelessWidget {
                             ),
                             Row(
                               children: [
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                  size: 10,
+                                ),
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.orange,
+                                  size: 10,
+                                ),
                                 const Icon(
                                   Icons.star,
                                   color: Colors.orange,

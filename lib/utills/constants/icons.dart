@@ -26,6 +26,7 @@ class RIcons{
   static const String person1="assets/icon/person1.png";
   static const String person2="assets/icon/person2.png";
   static const String person3="assets/icon/person3.png";
+  static const String person4="assets/icon/person4.png";
 
 
 
@@ -37,6 +38,11 @@ class RIcons{
   static const String trip="assets/icon/trip.png";
   static const String settings="assets/icon/settings.png";
   static const String version="assets/icon/version.png";
+
+
+  static const String dots="assets/icon/dots.png";
+  static const String edit="assets/icon/edit.png";
+  static const String check="assets/icon/check-mark.png";
 
 
 
