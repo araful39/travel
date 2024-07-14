@@ -78,10 +78,11 @@ static const String coxbazar="Inai beach, CoxBazar";
 
 static const String profile="Profile";
 static const String bookMarked="Bookmarked";
-static const String Previous="Previous";
+static const String previous="Previous";
 static const String previousTrips="Privious Tips";
 static const String settings="Settings";
   static const String version="Version";
+  static const String logout="Log Out";
 
 
 

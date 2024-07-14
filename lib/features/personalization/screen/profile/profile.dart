@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel/data/image.dart';
+import 'package:travel/features/authentication/screen/signin/signin.dart';
 import 'package:travel/features/personalization/screen/edit_profile/edit_profile.dart';
 import 'package:travel/features/personalization/screen/settings/settings.dart';
 import 'package:travel/features/shop/screen/Favorite_places/favorite_places.dart';
@@ -156,11 +157,23 @@ class _ProfileState extends State<Profile> {
                         trailing: const Icon(Icons.arrow_forward_ios_sharp),
                       ),
                     ),
-                    ListTile(
-                      leading: Image.asset(RIcons.version,height: 20,),
-                      title: const Text(RTexts.version,style: TextStyle(fontWeight: FontWeight.bold),),
-                      trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                    InkWell(onTap: (){},
+                      child: ListTile(
+                        leading: Image.asset(RIcons.version,height: 20,),
+                        title: const Text(RTexts.version,style: TextStyle(fontWeight: FontWeight.bold),),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      ),
                     ),
+                    InkWell(onTap: (){
+                      Get.offAll(()=> const SignIn());
+                    },
+                      child: const ListTile(
+                        leading: Icon(Icons.logout,color: RColores.splashColor,),
+                        title: Text(RTexts.logout,style: TextStyle(fontWeight: FontWeight.bold),),
+
+                      ),
+                    ),
+
             
                   ],
                 )

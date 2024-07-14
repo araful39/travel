@@ -72,7 +72,7 @@ class SignIn extends StatelessWidget {
               Column(
                 children: [
                   CustomButton(buttonName: RTexts.signIn, onPress: (){
-                    Get.to(()=> const NavigationMenu());
+                    Get.off(()=> const NavigationMenu());
                   }),
                   const SizedBox(
                     height: 30,

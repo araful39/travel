@@ -3,9 +3,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
 import 'package:travel/data/image.dart';
+import 'package:travel/features/personalization/screen/profile/profile.dart';
+import 'package:travel/navigation_menu.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/sizes.dart';
@@ -21,7 +24,7 @@ class _EditProfileState extends State<EditProfile> {
 
   ImagePicker picker = ImagePicker();
   Future getImageFromCamera() async {
-    final photo = await picker.pickImage(source: ImageSource.camera,);
+    final photo = await picker.pickImage(source: ImageSource.camera,requestFullMetadata: false,preferredCameraDevice: CameraDevice.front);
    if(photo==null) return;
     setState(() {
       image = File(photo.path);
@@ -44,7 +47,9 @@ class _EditProfileState extends State<EditProfile> {
           title: const Text("Edit Profile"),
           actions: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.offAll(()=>const NavigationMenu());
+              },
               child: const Text(
                 "Done",
                 style: TextStyle(
