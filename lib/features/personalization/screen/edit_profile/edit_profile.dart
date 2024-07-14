@@ -1,11 +1,39 @@
+
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
+import 'package:travel/data/image.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/sizes.dart';
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+
+  ImagePicker picker = ImagePicker();
+  Future getImageFromCamera() async {
+    final photo = await picker.pickImage(source: ImageSource.camera,);
+   if(photo==null) return;
+    setState(() {
+      image = File(photo.path);
+    });
+  }
+  Future getImageFromGallery() async {
+    final photo = await picker.pickImage(source: ImageSource.gallery,);
+    if(photo==null) return;
+    setState(() {
+      image = File(photo.path);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,16 +41,16 @@ class EditProfile extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text( "Edit Profile"),
-          actions:  [
+          title: const Text("Edit Profile"),
+          actions: [
             InkWell(
-              onTap: (){
-
-              },
+              onTap: () {},
               child: const Text(
                 "Done",
                 style: TextStyle(
-                    fontWeight: FontWeight.bold, color: RColores.splashColor,fontSize: 20),
+                    fontWeight: FontWeight.bold,
+                    color: RColores.splashColor,
+                    fontSize: 20),
               ),
             ),
             const SizedBox(
@@ -30,53 +58,128 @@ class EditProfile extends StatelessWidget {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Column(
-            children: [
-
-              Column(
-                children: [
-                  Image.asset(
-                    RIcons.profileMask,
-                  ),
-                  const Text(
-                    "Raju",
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                  ),
-                  const Text(
-                    "Change Profile Picture",
-                    style: TextStyle(color: RColores.splashColor),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: RSizes.md,
-              ),
-              const Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CustomTextField(
-                      hintText: "First Name",
-                      suffixIcon: Icons.check,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 80,
+                      backgroundImage: (image == null)
+                          ? const AssetImage(
+                              RIcons.profileMask,
+                            )
+                          : FileImage(image!,) as ImageProvider,
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CustomTextField(hintText: "Last Name"),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CustomTextField(hintText: "Location"),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: CustomTextField(hintText: "Mobile Number"),
-                  ),
-                ],
-              )
-            ],
+                    const SizedBox(
+                      height: RSizes.sm,
+                    ),
+                    const Text(
+                      "Raju",
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            backgroundColor: RColores.white,
+                            content: SizedBox(
+                              height: 150,
+                              width: double.infinity,
+                              child: Column(
+                                children: [
+                                  const Text("Select"),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          getImageFromGallery();                                        },
+                                        child: const Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Gallary",
+                                              style: TextStyle(
+                                                  color: RColores.splashColor,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Icon(
+                                              Icons.add_chart_rounded,
+                                              size: 80,
+                                              color: RColores.splashColor,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          getImageFromCamera();                                        },
+                                        child: const Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Cammera",
+                                              style: TextStyle(
+                                                  color: RColores.splashColor,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Icon(
+                                              Icons.camera_alt_outlined,
+                                              size: 80,
+                                              color: RColores.splashColor,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )));
+                      },
+                      child: const Text(
+                        "Change Profile Picture",
+                        style: TextStyle(color: RColores.splashColor),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: RSizes.md,
+                ),
+                const Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CustomTextField(
+                        hintText: "First Name",
+                        suffixIcon: Icons.check,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CustomTextField(hintText: "Last Name"),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CustomTextField(hintText: "Location"),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: CustomTextField(hintText: "Mobile Number"),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
