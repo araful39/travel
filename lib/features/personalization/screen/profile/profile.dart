@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel/features/personalization/screen/edit_profile/edit_profile.dart';
+import 'package:travel/features/personalization/screen/settings/settings.dart';
 import 'package:travel/features/shop/screen/Favorite_places/favorite_places.dart';
 import 'package:travel/features/shop/screen/popular_trip_package/popular_trip_package.dart';
 import 'package:travel/utills/constants/colors.dart';
@@ -131,10 +132,15 @@ class Profile extends StatelessWidget {
                       trailing: const Icon(Icons.arrow_forward_ios_sharp),
                     ),
                   ),
-                  ListTile(
-                    leading: Image.asset(RIcons.settings,height: 20,),
-                    title: const Text(RTexts.settings,style: TextStyle(fontWeight: FontWeight.bold),),
-                    trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                  InkWell(
+                    onTap: (){
+                      Get.to(()=> const Settings());
+                    },
+                    child: ListTile(
+                      leading: Image.asset(RIcons.settings,height: 20,),
+                      title: const Text(RTexts.settings,style: TextStyle(fontWeight: FontWeight.bold),),
+                      trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                    ),
                   ),
                   ListTile(
                     leading: Image.asset(RIcons.version,height: 20,),

@@ -17,27 +17,44 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15,top: 90),
+            padding: const EdgeInsets.only(
+              top: 80,right: 20,left: 20
+            ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-               const Text(
-                 RTexts.singInTitle,
-                 style: TextStyle(fontSize: RSizes.titleSize),
+               const Column(
+                 children: [
+                   Text(
+                     RTexts.singInTitle,
+                     style: TextStyle(fontSize: RSizes.titleSize),
+                   ),
+                   SizedBox(
+                     height: 10,
+                   ),
+                   Text(RTexts.singInSubTitle),
+                   SizedBox(
+                     height: 10,
+                   ),
+                 ],
                ),
-               const SizedBox(
-                 height: 10,
-               ),
-               const Text(RTexts.singInSubTitle),
-              const CustomTextField(
-                hintText: 'Email',
+          
+                    Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CustomTextField(
+                  hintText: 'Email',
+                ),
               ),
-              const CustomTextField(
-                hintText: 'Password',
-                suffixIcon: Icons.visibility_off,
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CustomTextField(
+                  hintText: 'Password',
+                  suffixIcon: Icons.visibility_off,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -47,27 +64,37 @@ class SignIn extends StatelessWidget {
                   })
                 ],
               ),
-              CustomButton(buttonName: RTexts.signIn, onPress: (){
-                Get.to(()=> const NavigationMenu());
-              }),
-                const SizedBox(
-                  height: 30,
-                ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              const SizedBox(
+                height: 20,
+              ),
+            ],
+                    ),
+              Column(
                 children: [
-                   const Text(RTexts.dontHavenAnAccount),
-                  CustomTextButton(buttonName: RTexts.singUp, onPress: (){
-                    Get.to(()=> const SignUp());
-                  })
+                  CustomButton(buttonName: RTexts.signIn, onPress: (){
+                    Get.to(()=> const NavigationMenu());
+                  }),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(RTexts.dontHavenAnAccount),
+                      CustomTextButton(buttonName: RTexts.singUp, onPress: (){
+                        Get.to(()=> const SignUp());
+                      })
+                    ],
+                  ),
+                  const Text(RTexts.orConnect),
+                  const SizedBox(
+                    height: 50,
+                  ),
                 ],
               ),
-              const Text(RTexts.orConnect),
-                const SizedBox(
-                  height: 50,
-                ),
+          
                 SocialMedia(onPressFacebook: () {  }, onPressInstagram: () {  }, onPressTwiter: () {  },)
-
+          
               ],
             ),
           ),

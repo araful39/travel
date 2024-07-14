@@ -19,9 +19,12 @@ class FavoritePlaces extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Favorite Places",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: Text(
+              "Favorite Places",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
           ),
           Expanded(
             child: Padding(

@@ -47,35 +47,35 @@ class _DetailsState extends State<Details> {
                       ),
                     ),
                   ),
-                  Positioned(
-                    top: 25,
-                    child: SizedBox(
-                      width: width * 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          InkWell(
-                            onTap: (){
-                              Get.back();
+                  SizedBox(
+                    width: width * 1,
+                    child: Positioned(
+                      top: 25,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap: (){
+                                Get.back();
 
-                            },
-                            child: Image.asset(
-                              RIcons.backArrow,
+                              },
+                              child: Icon(Icons.arrow_back_ios_new),
+                            ),
+                            const Text(
+                              "Details",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: RColores.white),
+                            ),
+                            Image.asset(
+                              RIcons.bookmark,
                               height: 50,
                             ),
-                          ),
-                          const Text(
-                            "Details",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: RColores.white),
-                          ),
-                          Image.asset(
-                            RIcons.bookmark,
-                            height: 50,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

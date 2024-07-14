@@ -51,27 +51,31 @@ class _ViewPageState extends State<ViewPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
 
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          RIcons.backArrow,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: (){
+                            Get.back();
+
+                          },
+                          child: const Icon(Icons.arrow_back_ios_new),
+                        ),
+                        const Text(
+                          "View",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: RColores.white),
+                        ),
+                        Image.asset(
+                          RIcons.bookmark,
                           height: 50,
                         ),
-                      ),
-                      const Text(
-                        "View",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: RColores.white),
-                      ),
-                   const SizedBox()
-                    ],
+                      ],
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,

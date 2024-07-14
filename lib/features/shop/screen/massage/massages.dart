@@ -23,15 +23,7 @@ class Massages extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          RIcons.backArrow,
-                          height: 20,
-                        ),
-                      ),
+                     const SizedBox(),
                       const Text(
                         "Massage",
                         style: TextStyle(
@@ -87,7 +79,7 @@ class Massages extends StatelessWidget {
                     itemBuilder: (context,index){
                       return InkWell(
                         onTap: (){
-                          Get.to(()=> Chat());
+                          Get.to(()=> const Chat());
                         },
                         child: const CustomMassagesCard(
                           imagePath: RIcons.person4,

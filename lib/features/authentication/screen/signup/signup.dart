@@ -15,14 +15,14 @@ class SignUp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15,top: 80),
+              padding: const EdgeInsets.only(left: 20, right: 20,top: 80),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Column(
                     children: [
@@ -36,13 +36,22 @@ class SignUp extends StatelessWidget {
                       Text(RTexts.singUpSubTitle),
                     ],
                   ),
+                  const SizedBox(
+                    height: RSizes.md,
+                  ),
                   Column(
                     children: [
                       const CustomTextField(
                         hintText: 'Name',
                       ),
+                      const SizedBox(
+                        height: RSizes.md,
+                      ),
                       const CustomTextField(
                         hintText: 'Email',
+                      ),
+                      const SizedBox(
+                        height: RSizes.md,
                       ),
                       const CustomTextField(
                         hintText: 'Password',
@@ -61,6 +70,9 @@ class SignUp extends StatelessWidget {
                         height: RSizes.md,
                       ),
                       CustomButton(buttonName: RTexts.singUp, onPress: (){}),
+                      const SizedBox(
+                        height: RSizes.md,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -73,7 +85,7 @@ class SignUp extends StatelessWidget {
                       const Text(RTexts.orConnect),
                     ],
                   ),
-
+          
                   const SizedBox(
                     height: 50,
                   ),

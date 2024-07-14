@@ -50,15 +50,30 @@ class EditProfile extends StatelessWidget {
                   )
                 ],
               ),
+              const SizedBox(
+                height: RSizes.md,
+              ),
               const Column(
                 children: [
-                  CustomTextField(
-                    hintText: "First Name",
-                    suffixIcon: Icons.check,
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CustomTextField(
+                      hintText: "First Name",
+                      suffixIcon: Icons.check,
+                    ),
                   ),
-                  CustomTextField(hintText: "Last Name"),
-                  CustomTextField(hintText: "Location"),
-                  CustomTextField(hintText: "Mobile Number"),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CustomTextField(hintText: "Last Name"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CustomTextField(hintText: "Location"),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CustomTextField(hintText: "Mobile Number"),
+                  ),
                 ],
               )
             ],

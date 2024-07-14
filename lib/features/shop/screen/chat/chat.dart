@@ -13,7 +13,7 @@ class Chat extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.arrow_back_ios_new),
+
           centerTitle: true,
           title: Column(
             children: [

@@ -30,10 +30,7 @@ class PopularTripPackage extends StatelessWidget {
                           onTap: () {
                             Get.back();
                           },
-                          child: Image.asset(
-                            RIcons.backArrow,
-                            height: 40,
-                          ),
+                          child: const Icon(Icons.arrow_back_ios),
                         ),
                         const Text(
                           "Popular Package",

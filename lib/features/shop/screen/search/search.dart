@@ -14,6 +14,7 @@ class Search extends StatelessWidget {
     return  SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: RColores.white,
           title: const Text("Search"),
           centerTitle: true,
           actions: const [
@@ -28,6 +29,9 @@ class Search extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(
+                height: RSizes.sm,
+              ),
               const CustomTextField(hintText: "Search Places",prefixIcons: true,suffixIcon: Icons.mic,),
               const Text(
                 "Search",
