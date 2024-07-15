@@ -12,6 +12,8 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController forgetPassController=TextEditingController();
+
     return  SafeArea(
       child: Scaffold(
         appBar: AppBar(),
@@ -41,7 +43,7 @@ class ForgetPassword extends StatelessWidget {
                 const SizedBox(
                   height: RSizes.xl,
                 ),
-                const CustomTextField(hintText: "Email"),
+                 CustomTextField(hintText: "Email", controller: forgetPassController,),
                 const SizedBox(
                   height: RSizes.lg,
                 ),

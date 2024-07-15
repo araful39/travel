@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:travel/utills/constants/colors.dart';
 
 class CustomTextField extends StatelessWidget {
+  final TextEditingController controller;
   final String hintText;
   final IconData? suffixIcon;
   final Color? suffixColor;
   final bool? prefixIcons;
+  final VoidCallback? onPressSuffix;
   const CustomTextField({
     super.key,
     required this.hintText,
     this.suffixIcon,
     this.suffixColor,
-    this.prefixIcons,
+    this.prefixIcons, this.onPressSuffix, required this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
+
         filled: true,
         prefixIcon: prefixIcons != null
             ? const Icon(
@@ -26,10 +30,13 @@ class CustomTextField extends StatelessWidget {
               )
             : null,
         hintText: hintText,
-        suffixIcon: Icon(
-          suffixIcon,
-          color: suffixColor,
-          size: 35,
+        suffixIcon: InkWell(
+          onTap: onPressSuffix,
+          child: Icon(
+            suffixIcon,
+            color: suffixColor,
+            size: 35,
+          ),
         ),
         fillColor: Colors.grey.shade100,
         enabledBorder: OutlineInputBorder(

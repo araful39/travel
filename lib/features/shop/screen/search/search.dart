@@ -11,6 +11,8 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController searchController=TextEditingController();
+
     return  SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -32,7 +34,7 @@ class Search extends StatelessWidget {
               const SizedBox(
                 height: RSizes.sm,
               ),
-              const CustomTextField(hintText: "Search Places",prefixIcons: true,suffixIcon: Icons.mic,),
+               CustomTextField(hintText: "Search Places",prefixIcons: true,suffixIcon: Icons.mic, controller: searchController,),
               const Text(
                 "Search",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

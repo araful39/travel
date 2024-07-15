@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:travel/data/image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travel/data/image_picker_profile.dart';
 import 'package:travel/features/authentication/screen/signin/signin.dart';
 import 'package:travel/features/personalization/screen/edit_profile/edit_profile.dart';
 import 'package:travel/features/personalization/screen/settings/settings.dart';
@@ -39,7 +40,6 @@ class _ProfileState extends State<Profile> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-            
                 const SizedBox(
                   height: RSizes.xl,
                 ),
@@ -49,13 +49,16 @@ class _ProfileState extends State<Profile> {
                       radius: 80,
                       backgroundImage: (image == null)
                           ? const AssetImage(
-                        RIcons.profileMask,
-                      )
-                          : FileImage(image!,) as ImageProvider,
+                              RIcons.profileMask,
+                            )
+                          : FileImage(
+                              image!,
+                            ) as ImageProvider,
                     ),
                     const Text(
                       "Raju",
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     const Text("rajuslam39@gmail.com")
                   ],
@@ -70,8 +73,7 @@ class _ProfileState extends State<Profile> {
                       children: [
                         Text(
                           "Reward Points",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
                           "360",
@@ -85,7 +87,8 @@ class _ProfileState extends State<Profile> {
                         Text(
                           "Travel Trips",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           "238",
@@ -99,7 +102,8 @@ class _ProfileState extends State<Profile> {
                         Text(
                           "Bucket List",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, ),
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           "473",
@@ -108,7 +112,6 @@ class _ProfileState extends State<Profile> {
                         )
                       ],
                     ),
-            
                   ],
                 ),
                 const SizedBox(
@@ -116,65 +119,105 @@ class _ProfileState extends State<Profile> {
                 ),
                 Column(
                   children: [
-            
                     InkWell(
-                      onTap: (){
-                        Get.to(()=> const EditProfile());
+                      onTap: () {
+                        Get.to(() => const EditProfile());
                       },
                       child: ListTile(
-                        leading: Image.asset(RIcons.profile,height: 20,),
-                        title: const Text(RTexts.profile,style: TextStyle(fontWeight: FontWeight.bold),),
-                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Get.to(()=> const FavoritePlaces());
-                      },
-                      child: ListTile(
-                        leading: Image.asset(RIcons.bookmark,height: 20,),
-                        title: const Text(RTexts.bookMarked,style: TextStyle(fontWeight: FontWeight.bold),),
+                        leading: Image.asset(
+                          RIcons.profile,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.profile,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp),
                       ),
                     ),
                     InkWell(
-                      onTap: (){
-                        Get.to(()=> const PopularTripPackage());
+                      onTap: () {
+                        Get.to(() => const FavoritePlaces());
                       },
                       child: ListTile(
-                        leading: Image.asset(RIcons.trip,height: 20,),
-                        title: const Text(RTexts.previousTrips,style: TextStyle(fontWeight: FontWeight.bold),),
+                        leading: Image.asset(
+                          RIcons.bookmark,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.bookMarked,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp),
                       ),
                     ),
                     InkWell(
-                      onTap: (){
-                        Get.to(()=> const Settings());
+                      onTap: () {
+                        Get.to(() => const PopularTripPackage());
                       },
                       child: ListTile(
-                        leading: Image.asset(RIcons.settings,height: 20,),
-                        title: const Text(RTexts.settings,style: TextStyle(fontWeight: FontWeight.bold),),
+                        leading: Image.asset(
+                          RIcons.trip,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.previousTrips,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp),
                       ),
                     ),
-                    InkWell(onTap: (){},
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => const Settings());
+                      },
                       child: ListTile(
-                        leading: Image.asset(RIcons.version,height: 20,),
-                        title: const Text(RTexts.version,style: TextStyle(fontWeight: FontWeight.bold),),
+                        leading: Image.asset(
+                          RIcons.settings,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.settings,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         trailing: const Icon(Icons.arrow_forward_ios_sharp),
                       ),
                     ),
-                    InkWell(onTap: (){
-                      Get.offAll(()=> const SignIn());
-                    },
+                    InkWell(
+                      onTap: () {},
+                      child: ListTile(
+                        leading: Image.asset(
+                          RIcons.version,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.version,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        Get.offAll(() => const SignIn());
+                        final SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        setState(() {
+                          prefs.setBool("isLogin", false);
+                          Get.offAll(()=> const ());
+                        });
+                      },
                       child: const ListTile(
-                        leading: Icon(Icons.logout,color: RColores.splashColor,),
-                        title: Text(RTexts.logout,style: TextStyle(fontWeight: FontWeight.bold),),
-
+                        leading: Icon(
+                          Icons.logout,
+                          color: RColores.splashColor,
+                        ),
+                        title: Text(
+                          RTexts.logout,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-
-            
                   ],
                 )
               ],

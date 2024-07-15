@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/common/widgets/button/text_button.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
@@ -10,11 +11,21 @@ import 'package:travel/navigation_menu.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({super.key});
 
   @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
+  @override
   Widget build(BuildContext context) {
+    TextEditingController emailController=TextEditingController();
+    TextEditingController passController=TextEditingController();
+
+
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -40,20 +51,21 @@ class SignIn extends StatelessWidget {
                    ),
                  ],
                ),
-          
+
                     Column(
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+               Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: CustomTextField(
-                  hintText: 'Email',
+
+                  hintText: 'Email', controller: emailController,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
+               Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: CustomTextField(
                   hintText: 'Password',
-                  suffixIcon: Icons.visibility_off,
+                  suffixIcon: Icons.visibility_off, controller: passController,
                 ),
               ),
               Row(
@@ -71,8 +83,15 @@ class SignIn extends StatelessWidget {
                     ),
               Column(
                 children: [
-                  CustomButton(buttonName: RTexts.signIn, onPress: (){
-                    Get.off(()=> const NavigationMenu());
+                  CustomButton(buttonName: RTexts.signIn, onPress: ()async{
+                    // Obtain shared preferences.
+                    final SharedPreferences prefs = await SharedPreferences.getInstance();
+                    setState(() {
+                      prefs.setBool("isLogin", true);
+                      Get.off(()=> const NavigationMenu());
+
+                    });
+
                   }),
                   const SizedBox(
                     height: 30,
@@ -92,9 +111,9 @@ class SignIn extends StatelessWidget {
                   ),
                 ],
               ),
-          
+
                 SocialMedia(onPressFacebook: () {  }, onPressInstagram: () {  }, onPressTwiter: () {  },)
-          
+
               ],
             ),
           ),

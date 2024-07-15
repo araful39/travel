@@ -1,14 +1,10 @@
-
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
-import 'package:travel/data/image.dart';
-import 'package:travel/features/personalization/screen/profile/profile.dart';
-import 'package:travel/navigation_menu.dart';
+import 'package:travel/data/image_picker_profile.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/sizes.dart';
@@ -21,22 +17,42 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  TextEditingController firstController=TextEditingController();
+  TextEditingController lastController=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController phoneController=TextEditingController();
 
+
+  String? myImagePath;
   ImagePicker picker = ImagePicker();
-  Future getImageFromCamera() async {
-    final photo = await picker.pickImage(source: ImageSource.camera,requestFullMetadata: false,preferredCameraDevice: CameraDevice.front);
+  Future getImage(ImageSource source) async {
+    SharedPreferences pref=await SharedPreferences.getInstance();
+    final photo = await picker.pickImage(source: source,);
    if(photo==null) return;
-    setState(() {
-      image = File(photo.path);
-    });
+   image=File(photo.path);
+
+setState(() {
+
+});
+      await pref.setString('imagePath',photo.path);
+
   }
-  Future getImageFromGallery() async {
-    final photo = await picker.pickImage(source: ImageSource.gallery,);
-    if(photo==null) return;
-    setState(() {
-      image = File(photo.path);
-    });
+  @override
+  void initState() {
+    _loadImageFromPrefs();
+    super.initState();
   }
+  Future<void> _loadImageFromPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? imagePath = prefs.getString('imagePath');
+    if (imagePath != null) {
+      setState(() {
+        image = File(imagePath);
+      });
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +64,7 @@ class _EditProfileState extends State<EditProfile> {
           actions: [
             InkWell(
               onTap: () {
-                Get.offAll(()=>const NavigationMenu());
+                // Get.offAll(()=>const NavigationMenu());
               },
               child: const Text(
                 "Done",
@@ -102,7 +118,7 @@ class _EditProfileState extends State<EditProfile> {
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          getImageFromGallery();                                        },
+                                          getImage(ImageSource.gallery);                                        },
                                         child: const Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
@@ -124,7 +140,7 @@ class _EditProfileState extends State<EditProfile> {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          getImageFromCamera();                                        },
+                                          getImage(ImageSource.camera);                                        },
                                         child: const Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
@@ -160,26 +176,26 @@ class _EditProfileState extends State<EditProfile> {
                 const SizedBox(
                   height: RSizes.md,
                 ),
-                const Column(
+                 Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: CustomTextField(
                         hintText: "First Name",
-                        suffixIcon: Icons.check,
+                        suffixIcon: Icons.check, controller: firstController,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CustomTextField(hintText: "Last Name"),
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomTextField(hintText: "Last Name",controller: lastController,),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CustomTextField(hintText: "Location"),
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomTextField(hintText: "Email",controller: emailController,),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: CustomTextField(hintText: "Mobile Number"),
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomTextField(hintText: "Mobile Number",controller: phoneController,),
                     ),
                   ],
                 )

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/common/widgets/button/text_button.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
 import 'package:travel/common/widgets/social_media/social_media.dart';
 import 'package:travel/features/authentication/screen/signin/signin.dart';
+import 'package:travel/navigation_menu.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
@@ -13,6 +15,9 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController=TextEditingController();
+    TextEditingController emailController=TextEditingController();
+    TextEditingController passController=TextEditingController();
     return  SafeArea(
       child: Scaffold(
 
@@ -41,21 +46,21 @@ class SignUp extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      const CustomTextField(
-                        hintText: 'Name',
+                       CustomTextField(
+                        hintText: 'Name', controller: nameController,
                       ),
                       const SizedBox(
                         height: RSizes.md,
                       ),
-                      const CustomTextField(
-                        hintText: 'Email',
+                       CustomTextField(
+                        hintText: 'Email', controller: emailController,
                       ),
                       const SizedBox(
                         height: RSizes.md,
                       ),
-                      const CustomTextField(
+                        CustomTextField(
                         hintText: 'Password',
-                        suffixIcon: Icons.visibility_off,
+                        suffixIcon: Icons.visibility_off, controller: passController,
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -69,7 +74,12 @@ class SignUp extends StatelessWidget {
                       const SizedBox(
                         height: RSizes.md,
                       ),
-                      CustomButton(buttonName: RTexts.singUp, onPress: (){}),
+                      CustomButton(buttonName: RTexts.singUp, onPress: ()async{
+                        final SharedPreferences prefs = await SharedPreferences.getInstance();
+                        prefs.setBool("isLogin", true);
+                        Get.offAll(()=>const NavigationMenu());
+
+                      }),
                       const SizedBox(
                         height: RSizes.md,
                       ),

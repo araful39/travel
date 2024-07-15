@@ -12,6 +12,8 @@ class Massages extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController massageSearchController=TextEditingController();
+
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -61,9 +63,9 @@ class Massages extends StatelessWidget {
                   const SizedBox(
                     height: RSizes.sm,
                   ),
-                  const CustomTextField(
+                   CustomTextField(
                     hintText: "Search for chats & messages ",
-                    prefixIcons: true,
+                    prefixIcons: true, controller: massageSearchController,
                   )
                 ],
               ),
