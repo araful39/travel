@@ -259,7 +259,7 @@ class _ViewPageState extends State<ViewPage> {
                                     const SizedBox(
                                       height: RSizes.sm,
                                     ),
-                                    CustomButton(buttonName: "See On The Map", onPress: (){
+                                    CustomElevatedButton(buttonName: "See On The Map", onPress: (){
                                       _launchURL('https://www.google.com/maps/');
                                     })
                                   ],

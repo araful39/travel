@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:travel/utills/constants/colors.dart';
 
-class CustomButton extends StatelessWidget {
+class CustomElevatedButton extends StatelessWidget {
   final String buttonName;
   final Color? backgroundColor;
   final VoidCallback onPress;
-  const CustomButton({
+  const CustomElevatedButton({
     super.key,
     required this.buttonName,
     this.backgroundColor,

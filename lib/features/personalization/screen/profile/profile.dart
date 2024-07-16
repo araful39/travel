@@ -120,8 +120,11 @@ class _ProfileState extends State<Profile> {
                 Column(
                   children: [
                     InkWell(
-                      onTap: () {
-                        Get.to(() => const EditProfile());
+                      onTap: () async{
+                      await  Get.to(() => const EditProfile());
+                      setState(() {
+                        
+                      });
                       },
                       child: ListTile(
                         leading: Image.asset(

@@ -214,7 +214,7 @@ class _DetailsState extends State<Details> {
             ],
           ),
         ),
-        bottomNavigationBar: CustomButton(
+        bottomNavigationBar: CustomElevatedButton(
           buttonName: 'Book Now',
           onPress: () {},
         ),

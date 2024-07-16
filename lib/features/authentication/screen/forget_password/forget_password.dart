@@ -47,7 +47,7 @@ class ForgetPassword extends StatelessWidget {
                 const SizedBox(
                   height: RSizes.lg,
                 ),
-                CustomButton(buttonName: RTexts.resetPassword, onPress: (){
+                CustomElevatedButton(buttonName: RTexts.resetPassword, onPress: (){
                   showDialog(context: context, builder: (context){
                     return Dialog(
 

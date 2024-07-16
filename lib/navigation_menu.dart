@@ -31,29 +31,52 @@ class _NavigationMenuState extends State<NavigationMenu> {
     return Scaffold(
         body: pageScreen[currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-          selectedIconTheme: const IconThemeData(size: 30,color: RColores.splashColor),
+          selectedIconTheme:
+              const IconThemeData(size: 30, color: RColores.splashColor),
           type: BottomNavigationBarType.fixed,
           selectedItemColor: RColores.splashColor,
           currentIndex: currentIndex,
           onTap: (index) {
-           setState(() {
-
-             currentIndex = index;
-
-
-           });
+            setState(() {
+              currentIndex = index;
+            });
           },
           items: [
             BottomNavigationBarItem(
-                icon: Image.asset(RIcons.home,height: 25,color:currentIndex==0?RColores.splashColor: RColores.black), label: "Home"),
+                icon: Image.asset(RIcons.home,
+                    height: 25,
+                    color: currentIndex == 0
+                        ? RColores.splashColor
+                        : RColores.black),
+                label: "Home"),
             BottomNavigationBarItem(
-                icon: Image.asset(RIcons.calender,height: 21,color: currentIndex==1?RColores.splashColor: RColores.black), label: "Calender"),
+                icon: Image.asset(RIcons.calender,
+                    height: 21,
+                    color: currentIndex == 1
+                        ? RColores.splashColor
+                        : RColores.black),
+                label: "Calender"),
             BottomNavigationBarItem(
-                icon: Image.asset(RIcons.search,height: 25,color: currentIndex==2?RColores.splashColor: RColores.black), label: "Search"),
+                icon: Image.asset(RIcons.search,
+                    height: 25,
+                    color: currentIndex == 2
+                        ? RColores.splashColor
+                        : RColores.black),
+                label: "Search"),
             BottomNavigationBarItem(
-                icon: Image.asset(RIcons.chat,height: 25,color: currentIndex==3?RColores.splashColor: RColores.black), label: "Chat"),
+                icon: Image.asset(RIcons.chat,
+                    height: 25,
+                    color: currentIndex == 3
+                        ? RColores.splashColor
+                        : RColores.black),
+                label: "Chat"),
             BottomNavigationBarItem(
-                icon: Image.asset(RIcons.profile,height: 25,color: currentIndex==4?RColores.splashColor: RColores.black), label: "Profile"),
+                icon: Image.asset(RIcons.profile,
+                    height: 25,
+                    color: currentIndex == 4
+                        ? RColores.splashColor
+                        : RColores.black),
+                label: "Profile"),
           ],
         ));
   }

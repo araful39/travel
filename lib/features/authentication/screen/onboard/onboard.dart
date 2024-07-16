@@ -72,7 +72,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
           isTrue
               ? Container(
               alignment: const Alignment(0, 0.95),
-              child: CustomButton(
+              child: CustomElevatedButton(
                   buttonName: "Get",
                   onPress: () {
                     _controller.nextPage(
@@ -81,7 +81,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   }))
               : Container(
               alignment: const Alignment(0, 0.95),
-              child: CustomButton(
+              child: CustomElevatedButton(
                   buttonName: "Next",
                   onPress: () {
                     if(index == 2){

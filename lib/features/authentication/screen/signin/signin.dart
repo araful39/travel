@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
 import 'package:travel/common/widgets/button/text_button.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
 import 'package:travel/common/widgets/social_media/social_media.dart';
+import 'package:travel/features/authentication/controller/signIn_controller.dart';
 import 'package:travel/features/authentication/screen/forget_password/forget_password.dart';
 import 'package:travel/features/authentication/screen/signup/signup.dart';
-import 'package:travel/navigation_menu.dart';
+
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
-class SignIn extends StatefulWidget {
+class SignIn extends StatelessWidget {
   const SignIn({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
-  @override
   Widget build(BuildContext context) {
-    TextEditingController emailController=TextEditingController();
-    TextEditingController passController=TextEditingController();
-
-
-
+    final SignInController controller=Get.put(SignInController());
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -58,16 +49,17 @@ class _SignInState extends State<SignIn> {
                 padding: const EdgeInsets.all(8.0),
                 child: CustomTextField(
 
-                  hintText: 'Email', controller: emailController,
+                  hintText: 'Email', controller: controller.emailController,
                 ),
               ),
-               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CustomTextField(
-                  hintText: 'Password',
-                  suffixIcon: Icons.visibility_off, controller: passController,
-                ),
-              ),
+               Obx(()=>Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: CustomTextField(
+
+                   hintText: 'Password',
+                   suffixIcon: controller.isTroggle.value ?Icons.visibility_off:Icons.visibility, controller: controller.passwordController,
+                 ),
+               ),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -83,16 +75,7 @@ class _SignInState extends State<SignIn> {
                     ),
               Column(
                 children: [
-                  CustomButton(buttonName: RTexts.signIn, onPress: ()async{
-                    // Obtain shared preferences.
-                    final SharedPreferences prefs = await SharedPreferences.getInstance();
-                    setState(() {
-                      prefs.setBool("isLogin", true);
-                      Get.off(()=> const NavigationMenu());
-
-                    });
-
-                  }),
+                  CustomElevatedButton(buttonName: RTexts.signIn, onPress: controller.signInToNavigationMenu),
                   const SizedBox(
                     height: 30,
                   ),

@@ -29,7 +29,7 @@ class _EditProfileState extends State<EditProfile> {
     SharedPreferences pref=await SharedPreferences.getInstance();
     final photo = await picker.pickImage(source: source,);
    if(photo==null) return;
-   image=File(photo.path);
+  var image=File(photo.path);
 
 setState(() {
 

@@ -73,7 +73,7 @@ class OtpVerification extends StatelessWidget {
                 const SizedBox(
                   height: RSizes.md,
                 ),
-                CustomButton(buttonName: RTexts.verify, onPress: (){
+                CustomElevatedButton(buttonName: RTexts.verify, onPress: (){
                   Get.to(()=>const SignIn());
                 }),
                 const SizedBox(
