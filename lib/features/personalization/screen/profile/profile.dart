@@ -39,195 +39,195 @@ class _ProfileState extends State<Profile> {
           padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
           child: SingleChildScrollView(
             child: Column(
-              children: [
-                const SizedBox(
-                  height: RSizes.xl,
-                ),
-                Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 80,
-                      backgroundImage: (image == null)
-                          ? const AssetImage(
-                              RIcons.profileMask,
-                            )
-                          : FileImage(
-                              image!,
-                            ) as ImageProvider,
-                    ),
-                    const Text(
-                      "Raju",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    const Text("rajuslam39@gmail.com")
-                  ],
-                ),
-                const SizedBox(
-                  height: RSizes.xl,
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          "Reward Points",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          "360",
-                          style: TextStyle(
-                              color: RColores.splashColor, fontSize: 15),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          "Travel Trips",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                children: [
+                  const SizedBox(
+                    height: RSizes.xl,
+                  ),
+                  Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 80,
+                        backgroundImage: (image == null)
+                            ? const AssetImage(
+                                RIcons.profileMask,
+                              )
+                            : FileImage(
+                                image!,
+                              ),
+                      ),
+                      const Text(
+                        "Raju",
+                        style:
+                            TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
+                      const Text("rajuslam39@gmail.com")
+                    ],
+                  ),
+                  const SizedBox(
+                    height: RSizes.xl,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "Reward Points",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           ),
-                        ),
-                        Text(
-                          "238",
-                          style: TextStyle(
-                              color: RColores.splashColor, fontSize: 15),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          "Bucket List",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                          Text(
+                            "360",
+                            style: TextStyle(
+                                color: RColores.splashColor, fontSize: 15),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "Travel Trips",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "473",
-                          style: TextStyle(
-                              color: RColores.splashColor, fontSize: 15),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: RSizes.xl,
-                ),
-                Column(
-                  children: [
-                    InkWell(
-                      onTap: () async{
-                      await  Get.to(() => const EditProfile());
-                      setState(() {
-                        
-                      });
-                      },
-                      child: ListTile(
-                        leading: Image.asset(
-                          RIcons.profile,
-                          height: 20,
-                        ),
-                        title: const Text(
-                          RTexts.profile,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                          Text(
+                            "238",
+                            style: TextStyle(
+                                color: RColores.splashColor, fontSize: 15),
+                          )
+                        ],
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const FavoritePlaces());
-                      },
-                      child: ListTile(
-                        leading: Image.asset(
-                          RIcons.bookmark,
-                          height: 20,
-                        ),
-                        title: const Text(
-                          RTexts.bookMarked,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      Column(
+                        children: [
+                          Text(
+                            "Bucket List",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "473",
+                            style: TextStyle(
+                                color: RColores.splashColor, fontSize: 15),
+                          )
+                        ],
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const PopularTripPackage());
-                      },
-                      child: ListTile(
-                        leading: Image.asset(
-                          RIcons.trip,
-                          height: 20,
-                        ),
-                        title: const Text(
-                          RTexts.previousTrips,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => const Settings());
-                      },
-                      child: ListTile(
-                        leading: Image.asset(
-                          RIcons.settings,
-                          height: 20,
-                        ),
-                        title: const Text(
-                          RTexts.settings,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: ListTile(
-                        leading: Image.asset(
-                          RIcons.version,
-                          height: 20,
-                        ),
-                        title: const Text(
-                          RTexts.version,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        Get.offAll(() => const SignIn());
-                        final SharedPreferences prefs =
-                            await SharedPreferences.getInstance();
+                    ],
+                  ),
+                  const SizedBox(
+                    height: RSizes.xl,
+                  ),
+                  Column(
+                    children: [
+                      InkWell(
+                        onTap: () async{
+                        await  Get.to(() => const EditProfile());
                         setState(() {
-                          prefs.setBool("isLogin", false);
-                          Get.offAll(()=> const ());
+
                         });
-                      },
-                      child: const ListTile(
-                        leading: Icon(
-                          Icons.logout,
-                          color: RColores.splashColor,
-                        ),
-                        title: Text(
-                          RTexts.logout,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                        },
+                        child: ListTile(
+                          leading: Image.asset(
+                            RIcons.profile,
+                            height: 20,
+                          ),
+                          title: const Text(
+                            RTexts.profile,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const FavoritePlaces());
+                        },
+                        child: ListTile(
+                          leading: Image.asset(
+                            RIcons.bookmark,
+                            height: 20,
+                          ),
+                          title: const Text(
+                            RTexts.bookMarked,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const PopularTripPackage());
+                        },
+                        child: ListTile(
+                          leading: Image.asset(
+                            RIcons.trip,
+                            height: 20,
+                          ),
+                          title: const Text(
+                            RTexts.previousTrips,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => const Settings());
+                        },
+                        child: ListTile(
+                          leading: Image.asset(
+                            RIcons.settings,
+                            height: 20,
+                          ),
+                          title: const Text(
+                            RTexts.settings,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: ListTile(
+                          leading: Image.asset(
+                            RIcons.version,
+                            height: 20,
+                          ),
+                          title: const Text(
+                            RTexts.version,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          Get.offAll(() => const SignIn());
+                          final SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          setState(() {
+                            prefs.setBool("isLogin", false);
+                            Get.offAll(()=> const ());
+                          });
+                        },
+                        child: const ListTile(
+                          leading: Icon(
+                            Icons.logout,
+                            color: RColores.splashColor,
+                          ),
+                          title: Text(
+                            RTexts.logout,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
     );
   }
 }

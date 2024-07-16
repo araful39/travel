@@ -3,26 +3,20 @@ import 'package:get/get.dart';
 
 import 'package:travel/common/widgets/heading/custom_heading.dart';
 import 'package:travel/data/best_destination/best_destination_list.dart';
+import 'package:travel/data/image_picker_profile.dart';
+import 'package:travel/features/shop/controller/home_controller.dart';
 import 'package:travel/features/shop/screen/details/details.dart';
 import 'package:travel/features/shop/screen/popular_places/popular_places.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/text.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  bool isBookmark = false;
-
-  @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    final HomeController controller = Get.put(HomeController());
     return SafeArea(
       child: Scaffold(
           body: SingleChildScrollView(
@@ -34,17 +28,24 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Row(
+                  Row(
                     children: [
                       Column(
                         children: [
-                          Image(image: AssetImage(RIcons.person)),
+                          image == null
+                              ? const Image(image: AssetImage(RIcons.person))
+                              : CircleAvatar(
+                            radius: 30,
+                                  backgroundImage: FileImage(
+                                  image!,
+
+                                )),
                         ],
                       ),
                       SizedBox(
                         width: 5,
                       ),
-                      Text(RTexts.personName),
+                      Obx(() => Text(controller.name.value)),
                     ],
                   ),
                   Image.asset(RIcons.notification)
@@ -99,7 +100,7 @@ class _HomeState extends State<Home> {
                 },
               ),
               SizedBox(
-                height: height * 0.52,
+                height: Get.height * 0.52,
                 child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
@@ -113,7 +114,7 @@ class _HomeState extends State<Home> {
                           },
                           child: Card(
                             child: SizedBox(
-                              width: width * 0.7,
+                              width: Get.width * 0.7,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -124,19 +125,17 @@ class _HomeState extends State<Home> {
                                       Positioned(
                                           right: 10,
                                           top: 10,
-                                          child: InkWell(
-                                            child: Image.asset(
-                                              RIcons.bookmark,
-                                              color: isBookmark == true
-                                                  ? RColores.orangeColor
-                                                  : null,
-                                            ),
-                                            onTap: () {
-                                              setState(() {
-                                                isBookmark = !isBookmark;
-                                              });
-                                            },
-                                          )),
+                                          child: Obx(() => InkWell(
+                                              child: Image.asset(
+                                                RIcons.bookmark,
+                                                color: controller
+                                                            .isBookmark.value ==
+                                                        true
+                                                    ? RColores.orangeColor
+                                                    : null,
+                                              ),
+                                              onTap:
+                                                  controller.addToBookMark))),
                                     ],
                                   ),
                                   Padding(
