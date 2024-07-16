@@ -83,6 +83,8 @@ static const String previousTrips="Privious Tips";
 static const String settings="Settings";
   static const String version="Version";
   static const String logout="Log Out";
+  static const String enterYourNewPassword="Enter Your New Password";
+  static const String newPassword="New Password";
 
 
 

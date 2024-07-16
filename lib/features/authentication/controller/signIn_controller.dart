@@ -3,10 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel/navigation_menu.dart';
 
-import '../screen/signin/signin.dart';
-
-class SignInController extends GetxController{
-
+class SignInController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   RxBool isTroggle = true.obs;
@@ -17,6 +14,8 @@ class SignInController extends GetxController{
 
   signInToNavigationMenu() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? email = prefs.getString("email");
+    String? password = prefs.getString("password");
     if (emailController.text.isEmpty) {
       Get.snackbar("Please Fill up ", "Your Email", colorText: Colors.red);
       return;
@@ -28,24 +27,27 @@ class SignInController extends GetxController{
       return;
     }
 
-    String? password = passwordController.text.isEmpty
-        ? "Password"
-        : passwordController.text.length < 8
-        ? "Password less than 8 characters"
-        : null;
-    if (password != null) {
-      Get.snackbar("Please Fill up", password, colorText: Colors.red);
+    if (email != emailController.text) {
+      Get.snackbar("Please Fill up", "Enter a Correct Email or Registration",
+          colorText: Colors.red);
+      return;
     }
 
-    else {
-      Get.offAll(
-          const NavigationMenu());
-      prefs.setBool("isLogin", true);
-
+    String? pass = password != passwordController.text
+        ? "Correct Password"
+        : passwordController.text.length < 8
+            ? "Password less than 8 characters"
+            : null;
+    if (pass != null) {
+      Get.snackbar("Please Fill up", pass, colorText: Colors.red);
+    } else {
+      Get.offAll(const NavigationMenu());
+      prefs.setBool("isLogin", true).obs;
+      update();
+      emailController.clear();
+      passwordController.clear();
     }
   }
-
-
 
   signUpFacebook() {}
 

@@ -55,7 +55,8 @@ class SignIn extends StatelessWidget {
                Obx(()=>Padding(
                  padding: const EdgeInsets.all(8.0),
                  child: CustomTextField(
-
+                   obscureText: controller.isTroggle.value,
+                   onPressSuffix: controller.troggle,
                    hintText: 'Password',
                    suffixIcon: controller.isTroggle.value ?Icons.visibility_off:Icons.visibility, controller: controller.passwordController,
                  ),

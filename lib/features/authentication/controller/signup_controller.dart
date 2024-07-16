@@ -34,17 +34,21 @@ class SignupController extends GetxController {
 
     String? password = passwordController.text.isEmpty
         ? "Password"
-        : passwordController.text.length < 8
+        : passwordController.text.length < 6
             ? "Password less than 8 characters"
             : null;
     if (password != null) {
       Get.snackbar("Please Fill up", password, colorText: Colors.red);
     } else {
       Get.offAll(const NavigationMenu());
-      prefs.setBool("isLogin", true);
+      prefs.setBool("isLogin", true).obs;
       prefs.setString("name", nameController.text);
       prefs.setString("email", emailController.text);
       prefs.setString("password", passwordController.text);
+      update();
+      nameController.clear();
+      emailController.clear();
+      passwordController.clear();
     }
   }
 

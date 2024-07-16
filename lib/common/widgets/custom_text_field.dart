@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:travel/utills/constants/colors.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -8,23 +9,26 @@ class CustomTextField extends StatelessWidget {
   final Color? suffixColor;
   final bool? prefixIcons;
   final bool? obscureText;
+  final int? maxLength;
   final VoidCallback? onPressSuffix;
-
+final double? fontSize;
 
   const CustomTextField({
     super.key,
     required this.hintText,
     this.suffixIcon,
     this.suffixColor,
-    this.prefixIcons, this.onPressSuffix, required this.controller,  this.obscureText,
+    this.prefixIcons, this.onPressSuffix, required this.controller,  this.obscureText, this.maxLength, this.fontSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+  style: TextStyle(fontSize: fontSize),
       controller: controller,
       obscureText: obscureText?? false,
       obscuringCharacter: "*",
+      maxLength: maxLength,
       decoration: InputDecoration(
 
         filled: true,
