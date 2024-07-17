@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+
 import 'package:table_calendar/table_calendar.dart';
 import 'package:travel/common/widgets/heading/custom_heading.dart';
-import 'package:travel/features/personalization/screen/notification/notification.dart';
-import 'package:travel/utills/constants/icons.dart';
+
 import 'package:travel/utills/constants/images.dart';
 import 'package:travel/utills/constants/text.dart';
 
@@ -33,22 +31,18 @@ class _CalenderState extends State<Calender> {
           padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
           child: Column(
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                 const SizedBox(),
-                  const Text(
+                 SizedBox(),
+                  Text(
                     "Calender",
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         ),
                   ),
-                   InkWell(
-                       onTap: (){
-                         Get.to(()=> const NotificationR());
-                       },
-                       child: Image.asset(RIcons.notification))
+
                 ],
               ),
               TableCalendar(

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:travel/common/widgets/heading/custom_heading.dart';
 import 'package:travel/data/best_destination/best_destination_list.dart';
-import 'package:travel/features/personalization/controller/editprofile_controller.dart';
+import 'package:travel/features/personalization/screen/notification/notification.dart';
 import 'package:travel/features/shop/controller/home_controller.dart';
 import 'package:travel/features/shop/screen/details/details.dart';
 import 'package:travel/features/shop/screen/popular_places/popular_places.dart';
@@ -51,12 +51,19 @@ class Home extends StatelessWidget {
                       const SizedBox(
                         width: 5,
                       ),
-                      Obx(() => Text(controller.name.value,style: TextStyle(fontSize: 20),)),
+                      Obx(() => Text(controller.name.value,style: const TextStyle(fontSize: 20),)),
                     ],
                   ),
-                  InkWell(
-                      onTap:controller.goToNotification,
-                      child: Image.asset(RIcons.notification))
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: InkWell(
+                        onTap:(){
+
+                       Get.to( const NotificationR());
+                       print("Ok");
+                        },
+                        child: Image.asset(RIcons.notification)),
+                  )
                 ],
               ),
               const SizedBox(
@@ -134,6 +141,8 @@ class Home extends StatelessWidget {
                                           right: 10,
                                           top: 10,
                                           child: Obx(() => InkWell(
+                                              onTap:
+                                                  controller.addToBookMark,
                                               child: Image.asset(
                                                 RIcons.bookmark,
                                                 color: controller
@@ -141,9 +150,7 @@ class Home extends StatelessWidget {
                                                         true
                                                     ? RColores.orangeColor
                                                     : null,
-                                              ),
-                                              onTap:
-                                                  controller.addToBookMark))),
+                                              )))),
                                     ],
                                   ),
                                   Padding(

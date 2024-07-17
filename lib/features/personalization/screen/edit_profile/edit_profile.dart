@@ -59,8 +59,8 @@ class EditProfile extends StatelessWidget {
                     const SizedBox(
                       height: RSizes.sm,
                     ),
-                    const Text(
-                      "Raju",
+                     Text(
+                      controller.name.value,
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),

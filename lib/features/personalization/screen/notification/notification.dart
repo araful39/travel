@@ -1,29 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:travel/features/personalization/screen/notification/archieved.dart';
-import 'package:travel/features/personalization/screen/notification/earlier.dart';
-import 'package:travel/features/personalization/screen/notification/recent.dart';
+import 'package:get/get.dart';
+import 'package:travel/features/personalization/controller/notification_controller.dart';
 import 'package:travel/utills/constants/colors.dart';
+import 'package:travel/utills/constants/sizes.dart';
 
-class NotificationR extends StatefulWidget {
+class NotificationR extends StatelessWidget {
   const NotificationR({super.key});
 
   @override
-  State<NotificationR> createState() => _NotificationRState();
-}
-
-class _NotificationRState extends State<NotificationR> {
-  final List<Tab> myTabs = <Tab>[
-    const Tab(text: 'Recent'),
-    const Tab(text: 'Earlier'),
-    const Tab(text: 'Archieved'),
-  ];
-
-  List<Widget> tabScreen = [const Recent(), const Earlier(), const Archieved()];
-  int currentIndex = 0;
-  @override
   Widget build(BuildContext context) {
+    final NotificationController controller=Get.put(NotificationController());
     return DefaultTabController(
-      length: myTabs.length,
+      length: controller.myTabs.length,
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
@@ -33,31 +21,22 @@ class _NotificationRState extends State<NotificationR> {
               Text(
                 "Clear all",
                 style: TextStyle(color: RColores.splashColor),
+              ),
+              SizedBox(
+                width: RSizes.md,
               )
             ],
             bottom: TabBar(
-              tabs: myTabs,
+              tabs: controller.myTabs.toList(),
+              onTap: (index){
+                controller.currentIndex.value=index;
+              },
             ),
           ),
-          body: TabBarView(
-            children: tabScreen,
-          ),
+          body:Obx(()=> controller.tabScreen[controller.currentIndex.value]),
+
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

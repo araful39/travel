@@ -31,13 +31,9 @@ class HomeController extends GetxController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
      name.value = prefs.getString("name")??"";
     selectedImage.value = prefs.getString("imagePath") ?? "";
-
     update();
   }
 
-  goToNotification(){
-    Get.to(const NotificationR());
-  }
 
 
 

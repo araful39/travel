@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class EditProfileController extends GetxController {
 
   ImagePicker picker = ImagePicker();
   RxString selectedImage = ''.obs;
-  // RxString name = ''.obs;
+  RxString name = ''.obs;
   // RxString email = ''.obs;
   // RxString password = ''.obs;
 
@@ -43,7 +44,7 @@ class EditProfileController extends GetxController {
     prefs.setString("name", nameController.text);
     prefs.setString("email", emailController.text);
     prefs.setString("mobile", phoneController.text);
-
+ChangeNotifier();
     update();
       Get.back();
 
@@ -54,6 +55,7 @@ class EditProfileController extends GetxController {
    selectedImage.value = prefs.getString("imagePath") ?? "";
    nameController.text = prefs.getString("name") ?? "";
     emailController.text = prefs.getString("email") ?? "";
+    name.value=nameController.text;
 
    update();
   }

@@ -7,7 +7,6 @@ import 'package:travel/features/shop/screen/Favorite_places/favorite_places.dart
 import 'package:travel/features/shop/screen/popular_trip_package/popular_trip_package.dart';
 
 class ProfileController extends GetxController {
-
   RxString selectedImage = ''.obs;
   RxString name = ''.obs;
   RxString email = ''.obs;
@@ -43,10 +42,7 @@ class ProfileController extends GetxController {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     selectedImage.value = prefs.getString("imagePath") ?? "";
     name.value = prefs.getString("name")!;
-    email.value = prefs.getString("email")! ;
+    email.value = prefs.getString("email")!;
     update();
   }
-
-
-
 }

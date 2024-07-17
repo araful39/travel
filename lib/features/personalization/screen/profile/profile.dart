@@ -14,7 +14,7 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileController controller=Get.put(ProfileController());
+    final ProfileController controller = Get.put(ProfileController());
 
     return SafeArea(
       child: Scaffold(
@@ -29,146 +29,150 @@ class Profile extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body:Padding(
-            padding: const EdgeInsets.only( left: 25, right: 25),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-
-                 Obx(
-                ()=> Column(
-                        children: [
-                         CircleAvatar(
-                              radius: 80,
-                              backgroundImage: controller.selectedImage.isEmpty
-                                  ? const AssetImage(
-                                      RIcons.profileMask,
-                                    )
-                                  : FileImage(
+        body: Padding(
+          padding: const EdgeInsets.only(left: 25, right: 25),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Obx(
+                  () => Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 80,
+                        backgroundImage: controller.selectedImage.isEmpty
+                            ? const AssetImage(
+                                RIcons.profileMask,
+                              )
+                            : FileImage(
                                 File(controller.selectedImage.value),
-                                    ),
-                            ),
-
-
-                         Text(
-                          controller.name.value,
-                          style:
-                              const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                        ),
-                         Text(controller.email.value)
-                      ],
-                    ),),
-
-                  const SizedBox(
-                    height: RSizes.xl,
+                              ),
+                      ),
+                      const SizedBox(
+                        height: RSizes.sm,
+                      ),
+                      Text(
+                        controller.name.value,
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text(controller.email.value)
+                    ],
                   ),
-                   const Row(
+                ),
+                const SizedBox(
+                  height: RSizes.xl,
+                ),
+                const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      PointCard(name: "Reward Points", point: 360,),
-                      PointCard(name: "Travel Trips", point: 238,),
-                      PointCard(name: "Bucket List", point: 473,),
-
-                      ]
-                  ),
-                  const SizedBox(
-                    height: RSizes.xl,
-                  ),
-                  Column(
-                    children: [
-                      InkWell(
-                        onTap: controller.goToEditProfile,
-                        child: ListTile(
-                          leading: Image.asset(
-                            RIcons.profile,
-                            height: 20,
-                          ),
-                          title: const Text(
-                            RTexts.editProfile,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      PointCard(
+                        name: "Reward Points",
+                        point: 360,
+                      ),
+                      PointCard(
+                        name: "Travel Trips",
+                        point: 238,
+                      ),
+                      PointCard(
+                        name: "Bucket List",
+                        point: 473,
+                      ),
+                    ]),
+                const SizedBox(
+                  height: RSizes.xl,
+                ),
+                Column(
+                  children: [
+                    InkWell(
+                      onTap: controller.goToEditProfile,
+                      child: ListTile(
+                        leading: Image.asset(
+                          RIcons.profile,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.editProfile,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: controller.goToFavoritePlaces,
+                      child: ListTile(
+                        leading: Image.asset(
+                          RIcons.bookmark,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.bookMarked,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: controller.goToPopularTripPackage,
+                      child: ListTile(
+                        leading: Image.asset(
+                          RIcons.trip,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.previousTrips,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: controller.goToSettings,
+                      child: ListTile(
+                        leading: Image.asset(
+                          RIcons.settings,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.settings,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: ListTile(
+                        leading: Image.asset(
+                          RIcons.version,
+                          height: 20,
+                        ),
+                        title: const Text(
+                          RTexts.version,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios_sharp),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: controller.goToSignIn,
+                      child: const ListTile(
+                        leading: Icon(
+                          Icons.logout,
+                          color: RColores.splashColor,
+                        ),
+                        title: Text(
+                          RTexts.logout,
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                      InkWell(
-                        onTap: controller.goToFavoritePlaces,
-                        child: ListTile(
-                          leading: Image.asset(
-                            RIcons.bookmark,
-                            height: 20,
-                          ),
-                          title: const Text(
-                            RTexts.bookMarked,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                        ),
-                      ),
-                      InkWell(
-                        onTap:controller.goToPopularTripPackage ,
-                        child: ListTile(
-                          leading: Image.asset(
-                            RIcons.trip,
-                            height: 20,
-                          ),
-                          title: const Text(
-                            RTexts.previousTrips,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                        ),
-                      ),
-                      InkWell(
-                        onTap:controller.goToSettings,
-                        child: ListTile(
-                          leading: Image.asset(
-                            RIcons.settings,
-                            height: 20,
-                          ),
-                          title: const Text(
-                            RTexts.settings,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                        ),
-                      ),
-                      InkWell(
-                        onTap:(){},
-                        child: ListTile(
-                          leading: Image.asset(
-                            RIcons.version,
-                            height: 20,
-                          ),
-                          title: const Text(
-                            RTexts.version,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          trailing: const Icon(Icons.arrow_forward_ios_sharp),
-                        ),
-                      ),
-                      InkWell(
-                        onTap:controller.goToSignIn,
-                        child: const ListTile(
-                          leading: Icon(
-                            Icons.logout,
-                            color: RColores.splashColor,
-                          ),
-                          title: Text(
-                            RTexts.logout,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
         ),
-
+      ),
     );
   }
 }
-
-
