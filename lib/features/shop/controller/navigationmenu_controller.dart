@@ -21,7 +21,6 @@ class NavigationMenuController extends GetxController{
 
 
   navigation(int index){
-    print("ok ");
     currentIndex.value=index;
   }
 

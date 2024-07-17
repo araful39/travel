@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,83 +6,55 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel/data/image_picker_profile.dart';
+import 'package:travel/utills/constants/colors.dart';
+import 'package:travel/utills/constants/sizes.dart';
 
 class EditProfileController extends GetxController {
-  TextEditingController firstController = TextEditingController();
-  TextEditingController lastController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
   ImagePicker picker = ImagePicker();
+  RxString selectedImage = ''.obs;
+  // RxString name = ''.obs;
+  // RxString email = ''.obs;
+  // RxString password = ''.obs;
 
-  changeImage() {
-    // Get.bottomSheet(
-    //     Column(
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         Text(
-    //           "Gallary",
-    //           style: TextStyle(
-    //               color: RColores.splashColor,
-    //               fontSize: 25,
-    //               fontWeight: FontWeight.bold),
-    //         ),
-    //         Icon(
-    //           Icons.add_chart_rounded,
-    //           size: 80,
-    //           color: RColores.splashColor,
-    //         )
-    //       ],
-    //     ),
-    //     barrierColor: RColores.red,
-    //     isDismissible: false,
-    // //     enableDrag: false);
-    // InkWell(
-    //   onTap: () {
-    //     getImage(ImageSource.camera);
-    //   },
-    //   child: const Column(
-    //     crossAxisAlignment: CrossAxisAlignment.center,
-    //     children: [
-    //       Text(
-    //         "Cammera",
-    //         style: TextStyle(
-    //             color: RColores.splashColor,
-    //             fontSize: 25,
-    //             fontWeight: FontWeight.bold),
-    //       ),
-    //       Icon(
-    //         Icons.camera_alt_outlined,
-    //         size: 80,
-    //         color: RColores.splashColor,
-    //       )
-    //     ],
-    //   ),
-    // );
-  }
 
-  Future<void> getImage(ImageSource source) async {
+  getImage(ImageSource source) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
-    final photo = await picker.pickImage(
+    final pickedImage  = await picker.pickImage(
       source: source,
     );
-    if (photo == null) return;
-    await pref.setString('imagePath', photo.path);
+    if (pickedImage  == null) return;
+     await pref.setString('imagePath', pickedImage .path);
+    selectedImage.value=pickedImage .path;
     update();
   }
 
   @override
   void onInit() {
-    loadImageFromPrefs();
+    getSp();
     super.onInit();
   }
 
-  Future<void> loadImageFromPrefs() async {
+  setSp()async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? imagePath = prefs.getString('imagePath');
-    if (imagePath != null) {
-      image = File(imagePath);
-    }
+    prefs.setString("name", nameController.text);
+    prefs.setString("email", emailController.text);
+    prefs.setString("mobile", phoneController.text);
+
     update();
+      Get.back();
+
+  }
+
+  Future<void> getSp() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+   selectedImage.value = prefs.getString("imagePath") ?? "";
+   nameController.text = prefs.getString("name") ?? "";
+    emailController.text = prefs.getString("email") ?? "";
+
+   update();
   }
 }

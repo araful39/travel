@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:travel/common/widgets/heading/custom_heading.dart';
 import 'package:travel/data/best_destination/best_destination_list.dart';
-import 'package:travel/data/image_picker_profile.dart';
+import 'package:travel/features/personalization/controller/editprofile_controller.dart';
 import 'package:travel/features/shop/controller/home_controller.dart';
 import 'package:travel/features/shop/screen/details/details.dart';
 import 'package:travel/features/shop/screen/popular_places/popular_places.dart';
@@ -16,7 +18,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final HomeController controller = Get.put(HomeController());
+
     return SafeArea(
       child: Scaffold(
           body: SingleChildScrollView(
@@ -30,25 +34,29 @@ class Home extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Column(
-                        children: [
-                          image == null
-                              ? const Image(image: AssetImage(RIcons.person))
-                              : CircleAvatar(
-                            radius: 30,
-                                  backgroundImage: FileImage(
-                                  image!,
-
-                                )),
-                        ],
+                      Obx(
+                        () => Column(
+                          children: [
+                            controller.selectedImage.isEmpty
+                                ? const Image(image: AssetImage(RIcons.person))
+                                : CircleAvatar(
+                                    radius: 30,
+                                    backgroundImage: FileImage(
+                                      File(controller
+                                          .selectedImage.value),
+                                    )),
+                          ],
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
-                      Obx(() => Text(controller.name.value)),
+                      Obx(() => Text(controller.name.value,style: TextStyle(fontSize: 20),)),
                     ],
                   ),
-                  Image.asset(RIcons.notification)
+                  InkWell(
+                      onTap:controller.goToNotification,
+                      child: Image.asset(RIcons.notification))
                 ],
               ),
               const SizedBox(

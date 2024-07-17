@@ -1,27 +1,21 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel/data/image_picker_profile.dart';
-import 'package:travel/features/authentication/screen/signin/signin.dart';
-import 'package:travel/features/personalization/screen/edit_profile/edit_profile.dart';
-import 'package:travel/features/personalization/screen/settings/settings.dart';
-import 'package:travel/features/shop/screen/Favorite_places/favorite_places.dart';
-import 'package:travel/features/shop/screen/popular_trip_package/popular_trip_package.dart';
+import 'package:travel/features/personalization/controller/profile_controller.dart';
+import 'package:travel/features/personalization/screen/profile/widget/point_card.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
-class Profile extends StatefulWidget {
+class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> {
-  @override
   Widget build(BuildContext context) {
+    final ProfileController controller=Get.put(ProfileController());
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -35,84 +29,47 @@ class _ProfileState extends State<Profile> {
           ),
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
-          child: SingleChildScrollView(
-            child: Column(
+        body:Padding(
+            padding: const EdgeInsets.only( left: 25, right: 25),
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
+
+                 Obx(
+                ()=> Column(
+                        children: [
+                         CircleAvatar(
+                              radius: 80,
+                              backgroundImage: controller.selectedImage.isEmpty
+                                  ? const AssetImage(
+                                      RIcons.profileMask,
+                                    )
+                                  : FileImage(
+                                File(controller.selectedImage.value),
+                                    ),
+                            ),
+
+
+                         Text(
+                          controller.name.value,
+                          style:
+                              const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                         Text(controller.email.value)
+                      ],
+                    ),),
+
                   const SizedBox(
                     height: RSizes.xl,
                   ),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 80,
-                        backgroundImage: (image == null)
-                            ? const AssetImage(
-                                RIcons.profileMask,
-                              )
-                            : FileImage(
-                                image!,
-                              ),
-                      ),
-                      const Text(
-                        "Raju",
-                        style:
-                            TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                      const Text("rajuslam39@gmail.com")
-                    ],
-                  ),
-                  const SizedBox(
-                    height: RSizes.xl,
-                  ),
-                  const Row(
+                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          Text(
-                            "Reward Points",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            "360",
-                            style: TextStyle(
-                                color: RColores.splashColor, fontSize: 15),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "Travel Trips",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "238",
-                            style: TextStyle(
-                                color: RColores.splashColor, fontSize: 15),
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            "Bucket List",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            "473",
-                            style: TextStyle(
-                                color: RColores.splashColor, fontSize: 15),
-                          )
-                        ],
-                      ),
-                    ],
+                      PointCard(name: "Reward Points", point: 360,),
+                      PointCard(name: "Travel Trips", point: 238,),
+                      PointCard(name: "Bucket List", point: 473,),
+
+                      ]
                   ),
                   const SizedBox(
                     height: RSizes.xl,
@@ -120,28 +77,21 @@ class _ProfileState extends State<Profile> {
                   Column(
                     children: [
                       InkWell(
-                        onTap: () async{
-                        await  Get.to(() => const EditProfile());
-                        setState(() {
-
-                        });
-                        },
+                        onTap: controller.goToEditProfile,
                         child: ListTile(
                           leading: Image.asset(
                             RIcons.profile,
                             height: 20,
                           ),
                           title: const Text(
-                            RTexts.profile,
+                            RTexts.editProfile,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           trailing: const Icon(Icons.arrow_forward_ios_sharp),
                         ),
                       ),
                       InkWell(
-                        onTap: () {
-                          Get.to(() => const FavoritePlaces());
-                        },
+                        onTap: controller.goToFavoritePlaces,
                         child: ListTile(
                           leading: Image.asset(
                             RIcons.bookmark,
@@ -155,9 +105,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {
-                          Get.to(() => const PopularTripPackage());
-                        },
+                        onTap:controller.goToPopularTripPackage ,
                         child: ListTile(
                           leading: Image.asset(
                             RIcons.trip,
@@ -171,9 +119,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {
-                          Get.to(() => const Settings());
-                        },
+                        onTap:controller.goToSettings,
                         child: ListTile(
                           leading: Image.asset(
                             RIcons.settings,
@@ -187,7 +133,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap:(){},
                         child: ListTile(
                           leading: Image.asset(
                             RIcons.version,
@@ -201,15 +147,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       InkWell(
-                        onTap: () async {
-                          Get.offAll(() => const SignIn());
-                          final SharedPreferences prefs =
-                              await SharedPreferences.getInstance();
-                          setState(() {
-                            prefs.setBool("isLogin", false);
-                            Get.offAll(()=> const ());
-                          });
-                        },
+                        onTap:controller.goToSignIn,
                         child: const ListTile(
                           leading: Icon(
                             Icons.logout,
@@ -228,6 +166,9 @@ class _ProfileState extends State<Profile> {
             ),
           ),
         ),
+
     );
   }
 }
+
+

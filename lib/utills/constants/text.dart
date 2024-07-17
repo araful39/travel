@@ -77,6 +77,7 @@ static const String coxbazar="Inai beach, CoxBazar";
   //profile
 
 static const String profile="Profile";
+static const String editProfile="Edit Profile";
 static const String bookMarked="Bookmarked";
 static const String previous="Previous";
 static const String previousTrips="Privious Tips";
