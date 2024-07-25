@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
+import 'package:travel/features/shop/screen/location/location.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/images.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ViewPage extends StatefulWidget {
   const ViewPage({super.key});
@@ -17,15 +17,7 @@ class ViewPage extends StatefulWidget {
 
 class _ViewPageState extends State<ViewPage> {
 
-  Future<void> _launchURL(String url)async{
-    final Uri uri =Uri(scheme: "https",host: url);
-    if(!await launchUrl(
-      uri,
-      mode: LaunchMode.externalApplication
-    )){
-      throw "Can not launch url";
-    }
-  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -260,7 +252,7 @@ class _ViewPageState extends State<ViewPage> {
                                       height: RSizes.sm,
                                     ),
                                     CustomElevatedButton(buttonName: "See On The Map", onPress: (){
-                                      _launchURL('https://www.google.com/maps/');
+Get.to(const Location());
                                     })
                                   ],
                                 ),
