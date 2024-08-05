@@ -60,7 +60,7 @@ class Home extends StatelessWidget {
                         onTap:(){
 
                        Get.to( const NotificationR());
-                       print("Ok");
+
                         },
                         child: Image.asset(RIcons.notification)),
                   )

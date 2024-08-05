@@ -47,10 +47,10 @@ class _DetailsState extends State<Details> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    width: width * 1,
-                    child: Positioned(
-                      top: 25,
+                  Positioned(
+                    top: 25,
+                    child: SizedBox(
+                      width: width * 1,
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
                         child: Row(
@@ -61,7 +61,7 @@ class _DetailsState extends State<Details> {
                                 Get.back();
 
                               },
-                              child: Icon(Icons.arrow_back_ios_new),
+                              child: const Icon(Icons.arrow_back_ios_new),
                             ),
                             const Text(
                               "Details",
@@ -214,9 +214,12 @@ class _DetailsState extends State<Details> {
             ],
           ),
         ),
-        bottomNavigationBar: CustomElevatedButton(
-          buttonName: 'Book Now',
-          onPress: () {},
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+          child: CustomElevatedButton(
+            buttonName: 'Book Now',
+            onPress: () {},
+          ),
         ),
       ),
     );

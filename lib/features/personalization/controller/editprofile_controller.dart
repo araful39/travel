@@ -1,14 +1,10 @@
-import 'dart:ffi';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel/data/image_picker_profile.dart';
-import 'package:travel/utills/constants/colors.dart';
-import 'package:travel/utills/constants/sizes.dart';
+
 
 class EditProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
