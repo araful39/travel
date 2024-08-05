@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
-import 'package:travel/features/shop/screen/location/location.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/images.dart';
