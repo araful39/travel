@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:travel/common/widgets/custom_text_field.dart';
-import 'package:travel/data/image_picker_profile.dart';
 import 'package:travel/features/personalization/controller/editprofile_controller.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
@@ -62,7 +61,7 @@ class EditProfile extends StatelessWidget {
                      Text(
                       controller.name.value,
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     InkWell(
                       onTap: (){
