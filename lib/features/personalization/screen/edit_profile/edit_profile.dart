@@ -44,7 +44,7 @@ class EditProfile extends StatelessWidget {
                 Column(
                   children: [
                     Obx(
-                ()=> CircleAvatar(
+                      () => CircleAvatar(
                         radius: 80,
                         backgroundImage: controller.selectedImage.isEmpty
                             ? const AssetImage(
@@ -58,75 +58,71 @@ class EditProfile extends StatelessWidget {
                     const SizedBox(
                       height: RSizes.sm,
                     ),
-                     Text(
+                    Text(
                       controller.name.value,
-                      style:
-                          const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     InkWell(
-                      onTap: (){
-
-                          Get.bottomSheet(
-                            backgroundColor: RColores.white,
-                            SizedBox(
-                              height: 150,
-                              child:  Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        "Cammera",
-                                        style: TextStyle(
-                                            color: RColores.splashColor,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      InkWell(
-                                        onTap: (){
-                                          controller.getImage(ImageSource.camera);
-                                          Get.back();
-                                        },
-                                        child: const Icon(
-                                          Icons.camera_alt_outlined,
-                                          size: 50,
+                      onTap: () {
+                        Get.bottomSheet(
+                          backgroundColor: RColores.white,
+                          SizedBox(
+                            height: 150,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "Cammera",
+                                      style: TextStyle(
                                           color: RColores.splashColor,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      const Text(
-                                        "Gallary",
-                                        style: TextStyle(
-                                            color: RColores.splashColor,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        controller.getImage(ImageSource.camera);
+                                        Get.back();
+                                      },
+                                      child: const Icon(
+                                        Icons.camera_alt_outlined,
+                                        size: 50,
+                                        color: RColores.splashColor,
                                       ),
-                                      InkWell(
-                                        onTap: (){
-                                          controller.getImage(ImageSource.gallery);
-                                          Get.back();
-                                        },
-                                        child: const Icon(
-                                          Icons.add_chart_rounded,
-                                          size: 50,
+                                    )
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "Gallary",
+                                      style: TextStyle(
                                           color: RColores.splashColor,
-                                        ),
-                                      )
-                                    ],
-                                  ),
-
-                                ],
-                              ),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        controller
+                                            .getImage(ImageSource.gallery);
+                                        Get.back();
+                                      },
+                                      child: const Icon(
+                                        Icons.add_chart_rounded,
+                                        size: 50,
+                                        color: RColores.splashColor,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
                             ),
-                          );
-
-
-
+                          ),
+                        );
                       },
                       child: const Text(
                         "Change Profile Picture",
@@ -148,7 +144,6 @@ class EditProfile extends StatelessWidget {
                         controller: controller.nameController,
                       ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CustomTextField(
