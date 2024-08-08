@@ -14,17 +14,22 @@ final OtpController controller=Get.put(OtpController());
       appBar: AppBar(),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          SizedBox(
-              width: 150,
-              child: CustomTextField(
-                fontSize: 30,
+          CustomTextField(
+            fontSize: 20,
 
-                  hintText: '', controller: controller.passwordController)),
-              SizedBox(
+              hintText: 'password', controller: controller.passwordController),
+              const SizedBox(
+                height: 10,
+              ),
+          CustomTextField(
+            fontSize: 20,
+
+              hintText: 'Confirm password', controller: controller.confirmPasswordController),
+              const SizedBox(
                 height: 40,
               ),
               CustomElevatedButton(buttonName: RTexts.newPassword, onPress: controller.newPasswordToLogIn),

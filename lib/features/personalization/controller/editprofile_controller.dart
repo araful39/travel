@@ -3,17 +3,17 @@ import 'package:get/get.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:travel/features/personalization/controller/profile_controller.dart';
+import 'package:travel/features/shop/controller/home_controller.dart';
 
 class EditProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   ImagePicker picker = ImagePicker();
   RxString selectedImage = ''.obs;
-  // RxString name = 'Rakib'.obs;
-  // RxString email = 'rakib39@gmail.com'.obs;
-  // RxString password = ''.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -22,21 +22,24 @@ class EditProfileController extends GetxController {
   }
 
   selectImage(ImageSource source) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
     final pickedImage = await picker.pickImage(
       source: source,
     );
-    if (pickedImage == null) return;
-    await pref.setString('imagePath', pickedImage.path);
-    selectedImage.value = pickedImage.path;
+    selectedImage.value = pickedImage?.path ?? "";
   }
 
   setSp() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString("name", nameController.text);
     await prefs.setString("email", emailController.text);
-    await prefs.setString("mobile", phoneController.text);
+    await prefs.setString("mobile", passwordController.text);
     await prefs.setString("imagePath", selectedImage.value);
+    ProfileController controller = Get.put(ProfileController());
+    controller.getImageData();
+    HomeController homeController = Get.put(HomeController());
+    homeController.getImage();
+    homeController.nameController;
+    Get.back();
     Get.snackbar("Success", "Profile Updated",
         snackPosition: SnackPosition.BOTTOM);
   }
@@ -46,5 +49,14 @@ class EditProfileController extends GetxController {
     selectedImage.value = prefs.getString("imagePath") ?? "";
     nameController.text = prefs.getString("name") ?? "";
     emailController.text = prefs.getString("email") ?? "";
+    passwordController.text = prefs.getString("password") ?? "";
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }

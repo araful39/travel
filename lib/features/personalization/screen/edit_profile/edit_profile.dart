@@ -159,8 +159,8 @@ class EditProfile extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: CustomTextField(
-                          hintText: "Mobile Number",
-                          controller: controller.phoneController,
+                          hintText: "password",
+                          controller: controller.passwordController,
                         ),
                       ),
                     ],

@@ -21,7 +21,6 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final HomeController controller = Get.put(HomeController());
-    final EditProfileController editProfileController=EditProfileController();
 
 
     return SafeArea(
@@ -40,12 +39,12 @@ class Home extends StatelessWidget {
                       children: [
                        Column(
                             children: [
-                              editProfileController.selectedImage.value.isEmpty
+                              controller.selectedImage.value.isEmpty
                                   ? const Image(image: AssetImage(RIcons.person))
                                   : CircleAvatar(
                                       radius: 30,
                                       backgroundImage: FileImage(
-                                        File(editProfileController
+                                        File(controller
                                             .selectedImage.value),
                                       )),
                             ],
@@ -54,7 +53,7 @@ class Home extends StatelessWidget {
                         const SizedBox(
                           width: 5,
                         ),
-                      Text(editProfileController.nameController.text,style: const TextStyle(fontSize: 20),),
+                      Text(controller.nameController.value,style: const TextStyle(fontSize: 20),),
                       ],
                     ),
                     Padding(

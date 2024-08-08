@@ -34,7 +34,7 @@ class Search extends StatelessWidget {
               const SizedBox(
                 height: RSizes.sm,
               ),
-               CustomTextField(hintText: "Search Places",prefixIcons: true,suffixIcon: Icons.mic, controller: searchController,),
+               CustomTextField(hintText: "Search Places",prefixIcons: true, controller: searchController,),
               const Text(
                 "Search",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),

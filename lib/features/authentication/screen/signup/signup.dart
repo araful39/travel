@@ -83,10 +83,12 @@ class SignUp extends StatelessWidget {
                       ),
                       CustomElevatedButton(
                           buttonName: RTexts.singUp,
-                          onPress: controller.signUpToNavigationMenu(
-                              controller.nameController.text,
-                              controller.emailController.text,
-                              controller.passwordController.text)),
+                          onPress:(){
+                            controller.signUpToNavigationMenu(
+                                controller.nameController.text,
+                                controller.emailController.text,
+                                controller.passwordController.text);
+                          }),
                       const SizedBox(
                         height: RSizes.md,
                       ),

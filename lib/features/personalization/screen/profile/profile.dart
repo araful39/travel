@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:travel/features/authentication/screen/signin/signin.dart';
-import 'package:travel/features/personalization/controller/editprofile_controller.dart';
 import 'package:travel/features/personalization/controller/profile_controller.dart';
 import 'package:travel/features/personalization/screen/profile/widget/point_card.dart';
 import 'package:travel/utills/constants/colors.dart';
@@ -18,7 +17,6 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProfileController controller = Get.put(ProfileController());
-    final EditProfileController editProfileController = EditProfileController();
 
     return SafeArea(
       child: Scaffold(
@@ -43,24 +41,23 @@ class Profile extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 80,
-                        backgroundImage: editProfileController
-                                .selectedImage.isEmpty
+                        backgroundImage: controller.selectedImage.value == ""
                             ? const AssetImage(
                                 RIcons.profileMask,
                               )
                             : FileImage(
-                                File(editProfileController.selectedImage.value),
+                                File(controller.selectedImage.value),
                               ),
                       ),
                       const SizedBox(
                         height: RSizes.sm,
                       ),
                       Text(
-                        editProfileController.nameController.text,
+                        controller.name.value,
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text(editProfileController.emailController.text)
+                      Text(controller.email.value)
                     ],
                   ),
                 ),

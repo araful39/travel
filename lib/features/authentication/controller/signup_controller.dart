@@ -18,12 +18,12 @@ class SignupController extends GetxController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (name.toString().isEmpty) {
       Get.snackbar("Please Fill up ", "Your Name", colorText: Colors.red);
-      return;
+      return true;
     }
 
     if (email.toString().isEmpty) {
       Get.snackbar("Please Fill up ", "Your Email", colorText: Colors.red);
-      return;
+      return ;
     }
 
     if (!GetUtils.isEmail(email.toString())) {
