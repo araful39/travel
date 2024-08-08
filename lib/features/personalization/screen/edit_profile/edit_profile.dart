@@ -22,7 +22,9 @@ class EditProfile extends StatelessWidget {
           title: const Text("Edit Profile"),
           actions: [
             InkWell(
-              onTap: controller.setSp,
+              onTap: () {
+                controller.setSp();
+              },
               child: const Text(
                 "Done",
                 style: TextStyle(
@@ -39,12 +41,12 @@ class EditProfile extends StatelessWidget {
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: Column(
-              children: [
-                Column(
-                  children: [
-                    Obx(
-                      () => CircleAvatar(
+            child: Obx(
+              () => Column(
+                children: [
+                  Column(
+                    children: [
+                      CircleAvatar(
                         radius: 80,
                         backgroundImage: controller.selectedImage.isEmpty
                             ? const AssetImage(
@@ -54,113 +56,117 @@ class EditProfile extends StatelessWidget {
                                 File(controller.selectedImage.value),
                               ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: RSizes.sm,
-                    ),
-                    Text(
-                      controller.name.value,
-                      style: const TextStyle(
-                          fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.bottomSheet(
-                          backgroundColor: RColores.white,
-                          SizedBox(
-                            height: 150,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      "Cammera",
-                                      style: TextStyle(
-                                          color: RColores.splashColor,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        controller.getImage(ImageSource.camera);
-                                        Get.back();
-                                      },
-                                      child: const Icon(
-                                        Icons.camera_alt_outlined,
-                                        size: 50,
-                                        color: RColores.splashColor,
+                      const SizedBox(
+                        height: RSizes.sm,
+                      ),
+                      Text(
+                        controller.nameController.text,
+                        style: const TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.bottomSheet(
+                            backgroundColor: RColores.white,
+                            SizedBox(
+                              height: 120,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        "Cammera",
+                                        style: TextStyle(
+                                            color: RColores.splashColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    const Text(
-                                      "Gallary",
-                                      style: TextStyle(
+                                      InkWell(
+                                        onTap: () {
+                                          controller
+                                              .selectImage(ImageSource.camera);
+                                          Get.back();
+                                        },
+                                        child: const Icon(
+                                          Icons.camera_alt_outlined,
+                                          size: 50,
                                           color: RColores.splashColor,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        controller
-                                            .getImage(ImageSource.gallery);
-                                        Get.back();
-                                      },
-                                      child: const Icon(
-                                        Icons.add_chart_rounded,
-                                        size: 50,
-                                        color: RColores.splashColor,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      const Text(
+                                        "Gallary",
+                                        style: TextStyle(
+                                            color: RColores.splashColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ],
+                                      InkWell(
+                                        onTap: () {
+                                          controller
+                                              .selectImage(ImageSource.gallery);
+                                          Get.back();
+                                        },
+                                        child: const Icon(
+                                          Icons.add_chart_rounded,
+                                          size: 50,
+                                          color: RColores.splashColor,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        "Change Profile Picture",
-                        style: TextStyle(color: RColores.splashColor),
+                          );
+                        },
+                        child: const Text(
+                          "Change Profile Picture",
+                          style: TextStyle(color: RColores.splashColor),
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: RSizes.md,
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CustomTextField(
+                          hintText: "First Name",
+                          suffixIcon: Icons.check,
+                          controller: controller.nameController,
+                        ),
                       ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: RSizes.md,
-                ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomTextField(
-                        hintText: "First Name",
-                        suffixIcon: Icons.check,
-                        controller: controller.nameController,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CustomTextField(
+                          hintText: "Email",
+                          controller: controller.emailController,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomTextField(
-                        hintText: "Email",
-                        controller: controller.emailController,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CustomTextField(
+                          hintText: "Mobile Number",
+                          controller: controller.phoneController,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomTextField(
-                        hintText: "Mobile Number",
-                        controller: controller.phoneController,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),

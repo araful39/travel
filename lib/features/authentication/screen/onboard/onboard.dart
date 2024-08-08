@@ -15,8 +15,8 @@ class OnboardScreen extends StatefulWidget {
 
 class _OnboardScreenState extends State<OnboardScreen> {
   final PageController _controller = PageController();
-  var isTrue = true;
-  var index = 0;
+  Rx isTrue = true.obs;
+  RxInt index = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class _OnboardScreenState extends State<OnboardScreen> {
           PageView.builder(
             onPageChanged: (value) {
               setState(() {
-                index=value;
+                index.value = value;
                 // print(value);
-                if (index == 0) {
-                  isTrue = true;
+                if (index.value == 0) {
+                  isTrue.value = true;
                   // print(isTrue);
                   // print(value);
                 } else if (index > 0) {
-                  isTrue = false;
+                  isTrue.value = false;
                 }
               });
             },
@@ -69,29 +69,29 @@ class _OnboardScreenState extends State<OnboardScreen> {
                   paintStyle: PaintingStyle.stroke, dotWidth: 30),
             ),
           ),
-          isTrue
+          isTrue.value
               ? Container(
-              alignment: const Alignment(0, 0.95),
-              child: CustomElevatedButton(
-                  buttonName: "Get",
-                  onPress: () {
-                    _controller.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeIn);
-                  }))
+                  alignment: const Alignment(0, 0.95),
+                  child: CustomElevatedButton(
+                      buttonName: "Get",
+                      onPress: () {
+                        _controller.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeIn);
+                      }))
               : Container(
-              alignment: const Alignment(0, 0.95),
-              child: CustomElevatedButton(
-                  buttonName: "Next",
-                  onPress: () {
-                    if(index == 2){
-                      Get.offAll(const SignIn());
-                    }else{
-                      _controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeIn);
-                    }}
-              ))
+                  alignment: const Alignment(0, 0.95),
+                  child: CustomElevatedButton(
+                      buttonName: "Next",
+                      onPress: () {
+                        if (index.value == 2) {
+                          Get.offAll(const SignIn());
+                        } else {
+                          _controller.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeIn);
+                        }
+                      }))
         ],
       ),
     );

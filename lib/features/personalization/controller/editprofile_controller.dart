@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 class EditProfileController extends GetxController {
   TextEditingController nameController = TextEditingController();
@@ -13,46 +11,40 @@ class EditProfileController extends GetxController {
 
   ImagePicker picker = ImagePicker();
   RxString selectedImage = ''.obs;
-  RxString name = ''.obs;
-  // RxString email = ''.obs;
+  // RxString name = 'Rakib'.obs;
+  // RxString email = 'rakib39@gmail.com'.obs;
   // RxString password = ''.obs;
-
-
-  getImage(ImageSource source) async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    final pickedImage  = await picker.pickImage(
-      source: source,
-    );
-    if (pickedImage  == null) return;
-     await pref.setString('imagePath', pickedImage .path);
-    selectedImage.value=pickedImage .path;
-    update();
-  }
-
   @override
   void onInit() {
-    getSp();
     super.onInit();
+    // TODO: implement onInit
+    getSp();
   }
 
-  setSp()async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("name", nameController.text);
-    prefs.setString("email", emailController.text);
-    prefs.setString("mobile", phoneController.text);
-ChangeNotifier();
-    update();
-      Get.back();
-
+  selectImage(ImageSource source) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    final pickedImage = await picker.pickImage(
+      source: source,
+    );
+    if (pickedImage == null) return;
+    await pref.setString('imagePath', pickedImage.path);
+    selectedImage.value = pickedImage.path;
   }
 
-  Future<void> getSp() async {
+  setSp() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-   selectedImage.value = prefs.getString("imagePath") ?? "";
-   nameController.text = prefs.getString("name") ?? "";
+    await prefs.setString("name", nameController.text);
+    await prefs.setString("email", emailController.text);
+    await prefs.setString("mobile", phoneController.text);
+    await prefs.setString("imagePath", selectedImage.value);
+    Get.snackbar("Success", "Profile Updated",
+        snackPosition: SnackPosition.BOTTOM);
+  }
+
+  getSp() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    selectedImage.value = prefs.getString("imagePath") ?? "";
+    nameController.text = prefs.getString("name") ?? "";
     emailController.text = prefs.getString("email") ?? "";
-    name.value=nameController.text;
-
-   update();
   }
 }

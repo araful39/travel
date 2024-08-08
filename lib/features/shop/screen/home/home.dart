@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:travel/common/widgets/heading/custom_heading.dart';
 import 'package:travel/data/best_destination/best_destination_list.dart';
+import 'package:travel/features/personalization/controller/editprofile_controller.dart';
 import 'package:travel/features/personalization/screen/notification/notification.dart';
 import 'package:travel/features/shop/controller/home_controller.dart';
 import 'package:travel/features/shop/screen/details/details.dart';
@@ -20,6 +21,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final HomeController controller = Get.put(HomeController());
+    final EditProfileController editProfileController=EditProfileController();
+
 
     return SafeArea(
       child: Scaffold(
@@ -29,42 +32,43 @@ class Home extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Obx(
-                        () => Column(
-                          children: [
-                            controller.selectedImage.isEmpty
-                                ? const Image(image: AssetImage(RIcons.person))
-                                : CircleAvatar(
-                                    radius: 30,
-                                    backgroundImage: FileImage(
-                                      File(controller
-                                          .selectedImage.value),
-                                    )),
-                          ],
+              Obx(
+              ()=> Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                       Column(
+                            children: [
+                              editProfileController.selectedImage.value.isEmpty
+                                  ? const Image(image: AssetImage(RIcons.person))
+                                  : CircleAvatar(
+                                      radius: 30,
+                                      backgroundImage: FileImage(
+                                        File(editProfileController
+                                            .selectedImage.value),
+                                      )),
+                            ],
+                          ),
+
+                        const SizedBox(
+                          width: 5,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Obx(() => Text(controller.name.value,style: const TextStyle(fontSize: 20),)),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: InkWell(
-                        onTap:(){
+                      Text(editProfileController.nameController.text,style: const TextStyle(fontSize: 20),),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: InkWell(
+                          onTap:(){
 
-                       Get.to( const NotificationR());
+                         Get.to( const NotificationR());
 
-                        },
-                        child: Image.asset(RIcons.notification)),
-                  )
-                ],
+                          },
+                          child: Image.asset(RIcons.notification)),
+                    )
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 25,

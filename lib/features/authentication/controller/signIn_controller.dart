@@ -12,28 +12,28 @@ class SignInController extends GetxController {
     isTroggle.value = !isTroggle.value;
   }
 
-  signInToNavigationMenu() async {
+  signInToNavigationMenu(String email,String password) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? email = prefs.getString("email");
-    String? password = prefs.getString("password");
-    if (emailController.text.isEmpty) {
+    String? emailS = prefs.getString("email");
+    String? passwordS = prefs.getString("password");
+    if (email.toString().isEmpty) {
       Get.snackbar("Please Fill up ", "Your Email", colorText: Colors.red);
       return;
     }
 
-    if (!GetUtils.isEmail(emailController.text)) {
+    if (!GetUtils.isEmail(email.toString())) {
       Get.snackbar("Please Fill up", "Enter a valid Email",
           colorText: Colors.red);
       return;
     }
 
-    if (email != emailController.text) {
+    if (emailS != email.toString()) {
       Get.snackbar("Please Fill up", "Enter a Correct Email or Registration",
           colorText: Colors.red);
       return;
     }
 
-    String? pass = password != passwordController.text
+    String? pass = passwordS != password
         ? "Correct Password"
         : passwordController.text.length < 8
             ? "Password less than 8 characters"

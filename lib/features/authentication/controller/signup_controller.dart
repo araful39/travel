@@ -14,38 +14,38 @@ class SignupController extends GetxController {
     isTroggle.value = !isTroggle.value;
   }
 
-  signUpToNavigationMenu() async {
+  signUpToNavigationMenu(String name,String email,String password) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (nameController.text.isEmpty) {
+    if (name.toString().isEmpty) {
       Get.snackbar("Please Fill up ", "Your Name", colorText: Colors.red);
       return;
     }
 
-    if (emailController.text.isEmpty) {
+    if (email.toString().isEmpty) {
       Get.snackbar("Please Fill up ", "Your Email", colorText: Colors.red);
       return;
     }
 
-    if (!GetUtils.isEmail(emailController.text)) {
+    if (!GetUtils.isEmail(email.toString())) {
       Get.snackbar("Please Fill up", "Enter a valid Email",
           colorText: Colors.red);
       return;
     }
 
-    String? password = passwordController.text.isEmpty
+    String? pass = password.toString().isEmpty
         ? "Password"
         : passwordController.text.length < 6
             ? "Password less than 8 characters"
             : null;
-    if (password != null) {
-      Get.snackbar("Please Fill up", password, colorText: Colors.red);
+    if (pass != null) {
+      Get.snackbar("Please Fill up", pass, colorText: Colors.red);
     } else {
       Get.offAll(const NavigationMenu());
       prefs.setBool("isLogin", true).obs;
-      prefs.setString("name", nameController.text);
-      prefs.setString("email", emailController.text);
-      prefs.setString("password", passwordController.text);
-      update();
+      prefs.setString("name", name.toString());
+      prefs.setString("email", email.toString());
+      prefs.setString("password", password.toString());
+
       nameController.clear();
       emailController.clear();
       passwordController.clear();

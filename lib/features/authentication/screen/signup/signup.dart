@@ -43,7 +43,6 @@ class SignUp extends StatelessWidget {
                     children: [
                       CustomTextField(
                         hintText: 'Name',
-
                         controller: controller.nameController,
                       ),
                       const SizedBox(
@@ -51,19 +50,22 @@ class SignUp extends StatelessWidget {
                       ),
                       CustomTextField(
                         hintText: 'Email',
-
                         controller: controller.emailController,
                       ),
                       const SizedBox(
                         height: RSizes.md,
                       ),
-                     Obx(()=>CustomTextField(
-                       obscureText: controller.isTroggle.value,
-                       hintText: 'Password',
-                       onPressSuffix: controller.troggle,
-                       suffixIcon: controller.isTroggle.value ?Icons.visibility_off:Icons.visibility,
-                       controller: controller.passwordController,
-                     ),),
+                      Obx(
+                        () => CustomTextField(
+                          obscureText: controller.isTroggle.value,
+                          hintText: 'Password',
+                          onPressSuffix: controller.troggle,
+                          suffixIcon: controller.isTroggle.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          controller: controller.passwordController,
+                        ),
+                      ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Row(
@@ -81,7 +83,10 @@ class SignUp extends StatelessWidget {
                       ),
                       CustomElevatedButton(
                           buttonName: RTexts.singUp,
-                          onPress: controller.signUpToNavigationMenu),
+                          onPress: controller.signUpToNavigationMenu(
+                              controller.nameController.text,
+                              controller.emailController.text,
+                              controller.passwordController.text)),
                       const SizedBox(
                         height: RSizes.md,
                       ),
@@ -103,7 +108,7 @@ class SignUp extends StatelessWidget {
                   ),
                   SocialMedia(
                     onPressFacebook: controller.signUpFacebook,
-                    onPressInstagram:controller.signUpInstagram,
+                    onPressInstagram: controller.signUpInstagram,
                     onPressTwiter: controller.signUpTwitter,
                   )
                 ],

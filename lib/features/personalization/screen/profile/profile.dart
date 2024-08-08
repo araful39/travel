@@ -1,7 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:travel/features/authentication/screen/signin/signin.dart';
+import 'package:travel/features/personalization/controller/editprofile_controller.dart';
 import 'package:travel/features/personalization/controller/profile_controller.dart';
 import 'package:travel/features/personalization/screen/profile/widget/point_card.dart';
 import 'package:travel/utills/constants/colors.dart';
@@ -15,6 +18,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProfileController controller = Get.put(ProfileController());
+    final EditProfileController editProfileController = EditProfileController();
 
     return SafeArea(
       child: Scaffold(
@@ -39,23 +43,24 @@ class Profile extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 80,
-                        backgroundImage: controller.selectedImage.isEmpty
+                        backgroundImage: editProfileController
+                                .selectedImage.isEmpty
                             ? const AssetImage(
                                 RIcons.profileMask,
                               )
                             : FileImage(
-                                File(controller.selectedImage.value),
+                                File(editProfileController.selectedImage.value),
                               ),
                       ),
                       const SizedBox(
                         height: RSizes.sm,
                       ),
                       Text(
-                        controller.name.value,
+                        editProfileController.nameController.text,
                         style: const TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      Text(controller.email.value)
+                      Text(editProfileController.emailController.text)
                     ],
                   ),
                 ),
@@ -154,7 +159,12 @@ class Profile extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: controller.goToSignIn,
+                      onTap: () async {
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        Get.off(const SignIn());
+                        prefs.setBool("isLogin", false).obs;
+                      },
                       child: const ListTile(
                         leading: Icon(
                           Icons.logout,
