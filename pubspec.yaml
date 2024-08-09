@@ -41,6 +41,8 @@ dependencies:
   table_calendar: ^3.1.2
   image_picker: ^1.1.2
   shared_preferences: ^2.2.3
+  cached_network_image:
+  carousel_slider:
 
 
 dev_dependencies:

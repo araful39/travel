@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
+import 'package:travel/common/widgets/cachedNetworkImage/custom_cached_network_image.dart';
 import 'package:travel/common/widgets/cliper/cliper.dart';
 import 'package:travel/common/widgets/heading/custom_heading.dart';
+import 'package:travel/features/shop/controller/details_controller.dart';
 import 'package:travel/features/shop/screen/view/view.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 
-import 'package:travel/utills/constants/images.dart';
 import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
 class Details extends StatefulWidget {
-  const Details({super.key});
+  const Details(
+      {super.key,
+      required this.imageUrl,
+      required this.resortName,
+      required this.location,
+      required this.ratings,
+      required this.amount,
+      required this.imageList});
+  final String imageUrl;
+  final String resortName;
+  final String location;
+  final String ratings;
+  final String amount;
+  final List imageList;
 
   @override
   State<Details> createState() => _DetailsState();
 }
 
 class _DetailsState extends State<Details> {
-  bool textLine = true;
+  DetailsController controller = Get.put(DetailsController());
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -30,19 +45,24 @@ class _DetailsState extends State<Details> {
             children: [
               Stack(
                 children: [
-                  ClipPath(
-                    // Define a custom path to clip the child
-                    clipper: MyClipper(),
-                    child: SizedBox(
-                      width: width,
-                      height: width * 0.8,
-                      child: InkWell(
-                        onTap: (){
-                          Get.to(()=>const ViewPage());
-                        },
-                        child: Image.asset(
-                          RImages.sunamganj,
-                          fit: BoxFit.cover,
+                  Obx(
+                    () => ClipPath(
+                      // Define a custom path to clip the child
+                      clipper: MyClipper(),
+                      child: SizedBox(
+                        width: width,
+                        height: width * 0.8,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => ViewPage(
+                                  imageUrl: widget
+                                      .imageList[controller.imageFirst.value],
+                                ));
+                          },
+                          child: CustomCachedNetworkImage(
+                            imageUrl: widget.imageUrl,
+                            boxFit: BoxFit.fitHeight,
+                          ),
                         ),
                       ),
                     ),
@@ -52,16 +72,22 @@ class _DetailsState extends State<Details> {
                     child: SizedBox(
                       width: width * 1,
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
+                        padding:
+                            const EdgeInsets.only(top: 20, left: 20, right: 20),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             InkWell(
-                              onTap: (){
+                              onTap: () {
                                 Get.back();
-
                               },
-                              child: const Icon(Icons.arrow_back_ios_new),
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.arrow_back_ios_new,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                             const Text(
                               "Details",
@@ -90,15 +116,16 @@ class _DetailsState extends State<Details> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Column(
+                            Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  RTexts.sunamganjResort,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 20),
+                                  widget.resortName,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
                                 ),
-                                Text(RTexts.sunamganj)
+                                Text(widget.location)
                               ],
                             ),
                             Image.asset(
@@ -118,32 +145,27 @@ class _DetailsState extends State<Details> {
                                 Text(RTexts.tekergat),
                               ],
                             ),
-                            const Row(
+                            Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.star,
                                   color: RColores.orangeColor,
                                 ),
-                                Text("4.7(2759)"),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                RichText(text: const TextSpan(children: []))
+                                Text("${widget.ratings}(2759)"),
                               ],
                             ),
                             RichText(
                               textAlign: TextAlign.center,
-                              text: const TextSpan(
+                              text: TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: "\$59/",
-                                    style: TextStyle(
+                                    text: "\$${widget.amount}/",
+                                    style: const TextStyle(
                                         color: RColores.splashColor,
                                         fontWeight: FontWeight.bold,
                                         fontSize: 20),
                                   ),
-                                  WidgetSpan(
+                                  const WidgetSpan(
                                     alignment: PlaceholderAlignment.middle,
                                     child: Text(
                                       "Person",
@@ -168,13 +190,20 @@ class _DetailsState extends State<Details> {
                       child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
-                          itemCount: 5,
+                          itemCount: widget.imageList.length,
                           itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 15),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(14),
-                                  child: Image.asset(RImages.sunamganj)),
+                            return InkWell(
+                              onTap: () {
+                                controller.imageFirst.value = index;
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 15),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(14),
+                                    child: CustomCachedNetworkImage(
+                                        height: 50,
+                                        imageUrl: widget.imageList[index])),
+                              ),
                             );
                           }),
                     ),
@@ -183,27 +212,30 @@ class _DetailsState extends State<Details> {
                     const SizedBox(
                       height: RSizes.sm,
                     ),
-                    Text(
-                      "First of all, many people think that the place will be wrong in Sylhet # Bisachandandi. It's actually a mistake to make a mistake. Because this place is not quite enough to look like a bichanakandi. The place is located in Takerghat of Sunamganj district, behind the scenes. His name is Lammachara. The beauty of local and exotic stone traders is freely and unplanned due to the lifting of stone today. Even then, the beauty of which is not low in emotions. Many tourists visit Takerghat but do not go here due to lack of knowledge From Dhaka to Shamili, Hanif, will go to Sunamganj by bus, rent -550 taka And if the local bus goes to 250-300 taka Get new Bridge / Abdus Zahur Bridge From there to the lakmachara lakmachara. On the way to Go, you can see the average of Laur, Jaduakata river, Shimul gardens, Barek Tila, Rajai Sharnan and Shaheed Siraj Lake / Limestone Lake / Lymston Quarry. One can go to two bikes, rent 400-500.",
-                      maxLines: textLine ? 8 : null,
+                    Obx(
+                      () => Text(
+                        "First of all, many people think that the place will be wrong in Sylhet # Bisachandandi. It's actually a mistake to make a mistake. Because this place is not quite enough to look like a bichanakandi. The place is located in Takerghat of Sunamganj district, behind the scenes. His name is Lammachara. The beauty of local and exotic stone traders is freely and unplanned due to the lifting of stone today. Even then, the beauty of which is not low in emotions. Many tourists visit Takerghat but do not go here due to lack of knowledge From Dhaka to Shamili, Hanif, will go to Sunamganj by bus, rent -550 taka And if the local bus goes to 250-300 taka Get new Bridge / Abdus Zahur Bridge From there to the lakmachara lakmachara. On the way to Go, you can see the average of Laur, Jaduakata river, Shimul gardens, Barek Tila, Rajai Sharnan and Shaheed Siraj Lake / Limestone Lake / Lymston Quarry. One can go to two bikes, rent 400-500.",
+                        maxLines: controller.readMore.value ? 8 : null,
+                      ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InkWell(
-                            onTap: () {
-                              setState(() {
-                                textLine = !textLine;
-                              });
-                            },
-                            child: Text(
-                              textLine ? "ReadMore" : "Read",
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  color: Colors.red),
-                            )),
-                      ],
+                    Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                              onTap: () {
+                                controller.readMore.value =
+                                    !controller.readMore.value;
+                              },
+                              child: Text(
+                                controller.readMore.value ? "ReadMore" : "Read",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: Colors.red),
+                              )),
+                        ],
+                      ),
                     ),
                     const SizedBox(
                       height: RSizes.xl,
@@ -215,7 +247,7 @@ class _DetailsState extends State<Details> {
           ),
         ),
         bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
           child: CustomElevatedButton(
             buttonName: 'Book Now',
             onPress: () {},

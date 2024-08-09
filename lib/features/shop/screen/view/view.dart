@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel/common/widgets/button/custom_eleveted_button.dart';
+import 'package:travel/common/widgets/cachedNetworkImage/custom_cached_network_image.dart';
 import 'package:travel/utills/constants/colors.dart';
 import 'package:travel/utills/constants/icons.dart';
 import 'package:travel/utills/constants/images.dart';
@@ -8,7 +9,9 @@ import 'package:travel/utills/constants/sizes.dart';
 import 'package:travel/utills/constants/text.dart';
 
 class ViewPage extends StatefulWidget {
-  const ViewPage({super.key});
+  const ViewPage({super.key, required this.imageUrl});
+  final String imageUrl;
+
 
   @override
   State<ViewPage> createState() => _ViewPageState();
@@ -28,10 +31,7 @@ class _ViewPageState extends State<ViewPage> {
             SizedBox(
                 height: height * 1,
                 width: width * 0.5,
-                child: Image.asset(
-                  RImages.sunamganj,
-                  fit: BoxFit.cover,
-                )),
+                child:CustomCachedNetworkImage(imageUrl: widget.imageUrl)),
           Positioned(child:   Padding(
             padding: const EdgeInsets.only(
                 top: 20,left: 20,
@@ -52,7 +52,8 @@ class _ViewPageState extends State<ViewPage> {
                           Get.back();
 
                         },
-                        child: const Icon(Icons.arrow_back_ios_new),
+                        child: const Icon(Icons.arrow_back_ios_new,color:
+                          Colors.white,),
                       ),
                       const Text(
                         "View",

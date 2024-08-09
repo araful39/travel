@@ -14,7 +14,7 @@ class SignupController extends GetxController {
     isTroggle.value = !isTroggle.value;
   }
 
-  signUpToNavigationMenu(String name,String email,String password) async {
+  signUpToNavigationMenu(String name, String email, String password) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     if (name.toString().isEmpty) {
       Get.snackbar("Please Fill up ", "Your Name", colorText: Colors.red);
@@ -23,7 +23,7 @@ class SignupController extends GetxController {
 
     if (email.toString().isEmpty) {
       Get.snackbar("Please Fill up ", "Your Email", colorText: Colors.red);
-      return ;
+      return;
     }
 
     if (!GetUtils.isEmail(email.toString())) {
@@ -45,11 +45,15 @@ class SignupController extends GetxController {
       prefs.setString("name", name.toString());
       prefs.setString("email", email.toString());
       prefs.setString("password", password.toString());
-
-      nameController.clear();
-      emailController.clear();
-      passwordController.clear();
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   getToSignIn() {
