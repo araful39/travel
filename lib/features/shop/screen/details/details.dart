@@ -43,10 +43,10 @@ class _DetailsState extends State<Details> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Stack(
-                children: [
-                  Obx(
-                    () => ClipPath(
+              Obx(
+                () => Stack(
+                  children: [
+                    ClipPath(
                       // Define a custom path to clip the child
                       clipper: MyClipper(),
                       child: SizedBox(
@@ -54,58 +54,62 @@ class _DetailsState extends State<Details> {
                         height: width * 0.8,
                         child: InkWell(
                           onTap: () {
-                            Get.to(() => ViewPage(
-                                  imageUrl: widget
-                                      .imageList[controller.imageFirst.value],
-                                ));
+                            Get.to(ViewPage(
+                              imageUrl:
+                                  widget.imageList[controller.imageFirst.value],
+                              resort: widget.resortName,
+                              location: widget.location,
+                              ratings: widget.ratings,
+                            ));
                           },
                           child: CustomCachedNetworkImage(
-                            imageUrl: widget.imageUrl,
+                            imageUrl:
+                                widget.imageList[controller.imageFirst.value],
                             boxFit: BoxFit.fitHeight,
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Positioned(
-                    top: 25,
-                    child: SizedBox(
-                      width: width * 1,
-                      child: Padding(
-                        padding:
-                            const EdgeInsets.only(top: 20, left: 20, right: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.arrow_back_ios_new,
-                                  color: Colors.white,
+                    Positioned(
+                      top: 25,
+                      child: SizedBox(
+                        width: width * 1,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 20, left: 20, right: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.arrow_back_ios_new,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const Text(
-                              "Details",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: RColores.white),
-                            ),
-                            Image.asset(
-                              RIcons.bookmark,
-                              height: 50,
-                            ),
-                          ],
+                              const Text(
+                                "Details",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: RColores.white),
+                              ),
+                              Image.asset(
+                                RIcons.bookmark,
+                                height: 50,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15),

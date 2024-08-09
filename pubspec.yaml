@@ -43,6 +43,7 @@ dependencies:
   shared_preferences: ^2.2.3
   cached_network_image:
   carousel_slider:
+  google_maps_flutter:
 
 
 dev_dependencies:

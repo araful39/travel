@@ -119,10 +119,10 @@ class Home extends StatelessWidget {
                   (BuildContext context, int index, int pageViewIndex) =>
                       Padding(
                 padding: const EdgeInsets.only(right: 10),
-                child: InkWell(
+                child: GestureDetector(
                   onTap: () {
                     Get.to(
-                      () => Details(
+                      Details(
                         imageUrl: bestDestinations[index].imagePath,
                         resortName: bestDestinations[index].resortName,
                         location: bestDestinations[index].location,
